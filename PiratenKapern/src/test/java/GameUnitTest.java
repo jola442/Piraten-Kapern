@@ -1,6 +1,10 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class GameUnitTest {
     Game game = new Game();
@@ -55,6 +59,22 @@ class GameUnitTest {
 
         assertEquals(35,game.getNumCards());
     }
+
+    @Test
+    void testCountDice(){
+        game.rollDice();
+        ArrayList<Game.Dice> dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.MONKEY, Game.Dice.PARROT, Game.Dice.SWORD, Game.Dice.SKULL, Game.Dice.COIN,
+                Game.Dice.DIAMOND, Game.Dice.MONKEY, Game.Dice.PARROT));
+        game.setDice(dice);
+        game.countDice();
+        assertEquals(2, game.getNumMonkeyDice());
+        assertEquals(2, game.getNumParrotDice());
+        assertEquals(1, game.getNumSwordDice());
+        assertEquals(1, game.getNumSkullDice());
+        assertEquals(1, game.getNumCoinDice());
+        assertEquals(1, game.getNumDiamondDice());
+    }
+
 
 }
 
