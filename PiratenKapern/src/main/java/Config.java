@@ -13,4 +13,5 @@ public class Config {
     public static final int NUM_OF_TWO_SWORDS_CARDS = 2;
     public static final int NUM_OF_THREE_SWORDS_CARDS = 2;
     public static final int NUM_OF_FOUR_SWORDS_CARDS = 2;
+    public static final int NUM_OF_DICE = 8;
 }
