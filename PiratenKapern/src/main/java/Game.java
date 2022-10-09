@@ -14,19 +14,8 @@ public class Game {
     }
 
     public Game(){
-        numCards = Config.NUM_OF_CARDS;
         fortuneCards = new EnumMap<Card, Integer>(Card.class);
-        fortuneCards.put(Card.CHEST, Config.NUM_OF_CHEST_CARDS);
-        fortuneCards.put(Card.SORCERESS, Config.NUM_OF_SORCERESS_CARDS);
-        fortuneCards.put(Card.CAPTAIN, Config.NUM_OF_CAPTAIN_CARDS);
-        fortuneCards.put(Card.MONKEY_AND_PARROT, Config.NUM_OF_MONKEY_AND_PARROT_CARDS);
-        fortuneCards.put(Card.DIAMOND, Config.NUM_OF_DIAMOND_CARDS);
-        fortuneCards.put(Card.COIN, Config.NUM_OF_COIN_CARDS);
-        fortuneCards.put(Card.TWO_SKULLS, Config.NUM_OF_TWO_SKULLS_CARDS);
-        fortuneCards.put(Card.ONE_SKULL, Config.NUM_OF_ONE_SKULL_CARDS);
-        fortuneCards.put(Card.TWO_SWORDS, Config.NUM_OF_TWO_SWORDS_CARDS);
-        fortuneCards.put(Card.THREE_SWORDS, Config.NUM_OF_THREE_SWORDS_CARDS);
-        fortuneCards.put(Card.FOUR_SWORDS, Config.NUM_OF_FOUR_SWORDS_CARDS);
+        restockCards();
     }
 
     public int getNumCards() {
@@ -58,7 +47,25 @@ public class Game {
         fortuneCards.put(card, fortuneCards.get(card)-1);
 
         numCards -= 1;
+        if(numCards == 0){
+            restockCards();
+        }
         return card;
+    }
+
+    public void restockCards(){
+        numCards = Config.NUM_OF_CARDS;
+        fortuneCards.put(Card.CHEST, Config.NUM_OF_CHEST_CARDS);
+        fortuneCards.put(Card.SORCERESS, Config.NUM_OF_SORCERESS_CARDS);
+        fortuneCards.put(Card.CAPTAIN, Config.NUM_OF_CAPTAIN_CARDS);
+        fortuneCards.put(Card.MONKEY_AND_PARROT, Config.NUM_OF_MONKEY_AND_PARROT_CARDS);
+        fortuneCards.put(Card.DIAMOND, Config.NUM_OF_DIAMOND_CARDS);
+        fortuneCards.put(Card.COIN, Config.NUM_OF_COIN_CARDS);
+        fortuneCards.put(Card.TWO_SKULLS, Config.NUM_OF_TWO_SKULLS_CARDS);
+        fortuneCards.put(Card.ONE_SKULL, Config.NUM_OF_ONE_SKULL_CARDS);
+        fortuneCards.put(Card.TWO_SWORDS, Config.NUM_OF_TWO_SWORDS_CARDS);
+        fortuneCards.put(Card.THREE_SWORDS, Config.NUM_OF_THREE_SWORDS_CARDS);
+        fortuneCards.put(Card.FOUR_SWORDS, Config.NUM_OF_FOUR_SWORDS_CARDS);
     }
 
 }
