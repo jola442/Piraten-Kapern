@@ -45,5 +45,16 @@ class GameUnitTest {
 
         assertEquals(Config.NUM_OF_CARDS - 1, game.getNumCards());
     }
+
+
+    @Test
+    void testDrawAllFortuneCards(){
+        for(int i = 0; i < Config.NUM_OF_CARDS; i++){
+            game.drawFortuneCard();
+        }
+
+        assertEquals(35,game.getNumCards());
+    }
+
 }
 
