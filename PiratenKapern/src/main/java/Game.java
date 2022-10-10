@@ -311,6 +311,36 @@ public class Game {
             score += Config.EIGHT_OF_A_KIND_SCORE + Config.FULL_CHEST_BONUS;
         }
 
+        if(fortuneCard == Card.TWO_SWORDS){
+            if(numSwordDice >= 2){
+                score += Config.TWO_SWORDS_BONUS;
+            }
+
+            else{
+                score -= Config.TWO_SWORDS_BONUS;
+            }
+        }
+
+        else if(fortuneCard == Card.THREE_SWORDS){
+            if(numSwordDice >= 3){
+                score += Config.THREE_SWORDS_BONUS;
+            }
+
+            else{
+                score -= Config.THREE_SWORDS_BONUS;
+            }
+        }
+
+        else if(fortuneCard == Card.FOUR_SWORDS){
+            if(numSwordDice >= 4){
+                score += Config.FOUR_SWORDS_BONUS;
+            }
+
+            else{
+                score -= Config.FOUR_SWORDS_BONUS;
+            }
+        }
+
         if(fortuneCard == Card.CAPTAIN){
             score *= Config.CAPTAIN_MULTIPLIER;
         }
