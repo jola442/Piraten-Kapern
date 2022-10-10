@@ -21,5 +21,7 @@ public class Config {
     public static final int FIVE_OF_A_KIND_SCORE = 500;
     public static final int SIX_OF_A_KIND_SCORE = 1000;
     public static final int SEVEN_OF_A_KIND_SCORE = 2000;
+    public static final int EIGHT_OF_A_KIND_SCORE = 4000;
+    public static final int FULL_CHEST_BONUS = 500;
     public static final int CAPTAIN_MULTIPLIER = 2;
 }
