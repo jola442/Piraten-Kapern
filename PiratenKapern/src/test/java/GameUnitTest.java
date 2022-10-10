@@ -465,4 +465,29 @@ class GameUnitTest {
         game.setDice(dice);
         assertEquals((Config.THREE_OF_A_KIND_SCORE + Config.COIN_BONUS + Config.DIAMOND_BONUS - Config.FOUR_SWORDS_BONUS), game.calculateScore());
     }
+
+    @Test
+    void testTreasureChest(){
+        game.drawFortuneCard();
+        game.rollDice();
+        game.setFortuneCard(Game.Card.CHEST);
+        ArrayList<Game.Dice> dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.COIN, Game.Dice.COIN, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+
+        //hold only dice in index 0,1,2 and 3
+        int[] held = {0,1,2,3,-1,-1,-1,-1};
+
+        //place only dice in index 0,1,2 and 3 in treasure chest
+        int[] inTreasureChest = {0,1,2,3,-1,-1,-1,-1};
+        game.setHeldDice(held);
+        game.setInTreasureChest(inTreasureChest);
+        game.rerollDice();
+
+        //3 SKULLS
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.COIN, Game.Dice.COIN, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT));
+        game.setDice(dice);
+
+        assertEquals((Config.COIN_BONUS*3) + Config.DIAMOND_BONUS + (Config.THREE_OF_A_KIND_SCORE),game.calculateScore());
+    }
+
 }
