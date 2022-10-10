@@ -202,7 +202,7 @@ public class Game {
         //Add face value bonus for diamonds
         if(numDiamondDice >= 1){
             if(fortuneCard == Card.DIAMOND){
-                score += score += Config.DIAMOND_BONUS * (numDiamondDice+1);
+                score += Config.DIAMOND_BONUS * (numDiamondDice+1);
             }
 
             else{
@@ -211,23 +211,40 @@ public class Game {
 
         }
 
+        //Four of a kind path excluding monkey and parrot dice
+        if(numDiamondDice == 4 || (numDiamondDice == 3 && fortuneCard == Card.DIAMOND)||
+                numCoinDice == 4 || (numCoinDice == 3 && fortuneCard == Card.COIN)||
+                numSwordDice == 4){
+            score += Config.FOUR_OF_A_KIND_SCORE;
+        }
+
         //Three of a kind path excluding monkey and parrot dice
-        if(numDiamondDice == 3 || (numDiamondDice == 2 && fortuneCard == Card.DIAMOND)||
+        else if(numDiamondDice == 3 || (numDiamondDice == 2 && fortuneCard == Card.DIAMOND)||
                 numCoinDice == 3 || (numCoinDice == 2 && fortuneCard == Card.COIN)||
                 numSwordDice == 3){
             score += Config.THREE_OF_A_KIND_SCORE;
         }
+
+
 
         //Monkey and Parrot card path
         if(fortuneCard == Card.MONKEY_AND_PARROT){
             if(numMonkeyDice + numParrotDice == 3){
                 score += Config.THREE_OF_A_KIND_SCORE;
             }
+
+            else if(numMonkeyDice + numParrotDice == 4){
+                score += Config.FOUR_OF_A_KIND_SCORE;
+            }
         }
 
         //Monkey and parrot dice path
         else if(numMonkeyDice == 3 || numParrotDice == 3){
             score += Config.THREE_OF_A_KIND_SCORE;
+        }
+
+        else if(numMonkeyDice == 4 || numParrotDice == 4){
+            score += Config.FOUR_OF_A_KIND_SCORE;
         }
 
 

@@ -17,5 +17,6 @@ public class Config {
     public static final int COIN_BONUS = 100;
     public static final int DIAMOND_BONUS = 100;
     public static final int THREE_OF_A_KIND_SCORE = 100;
+    public static final int FOUR_OF_A_KIND_SCORE = 200;
     public static final int CAPTAIN_MULTIPLIER = 2;
 }
