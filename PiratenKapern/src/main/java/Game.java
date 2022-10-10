@@ -211,8 +211,15 @@ public class Game {
 
         }
 
+        //Five of a kind path excluding monkey and parrot dice
+        if(numDiamondDice == 5 || (numDiamondDice == 4 && fortuneCard == Card.DIAMOND)||
+                numCoinDice == 5 || (numCoinDice == 4 && fortuneCard == Card.COIN)||
+                numSwordDice == 5){
+            score += Config.FIVE_OF_A_KIND_SCORE;
+        }
+
         //Four of a kind path excluding monkey and parrot dice
-        if(numDiamondDice == 4 || (numDiamondDice == 3 && fortuneCard == Card.DIAMOND)||
+        else if(numDiamondDice == 4 || (numDiamondDice == 3 && fortuneCard == Card.DIAMOND)||
                 numCoinDice == 4 || (numCoinDice == 3 && fortuneCard == Card.COIN)||
                 numSwordDice == 4){
             score += Config.FOUR_OF_A_KIND_SCORE;
@@ -236,6 +243,10 @@ public class Game {
             else if(numMonkeyDice + numParrotDice == 4){
                 score += Config.FOUR_OF_A_KIND_SCORE;
             }
+
+            else if(numMonkeyDice + numParrotDice == 5){
+                score += Config.FIVE_OF_A_KIND_SCORE;
+            }
         }
 
         //Monkey and parrot dice path
@@ -245,6 +256,10 @@ public class Game {
 
         else if(numMonkeyDice == 4 || numParrotDice == 4){
             score += Config.FOUR_OF_A_KIND_SCORE;
+        }
+
+        else if(numMonkeyDice == 5 || numParrotDice == 5){
+            score += Config.FIVE_OF_A_KIND_SCORE;
         }
 
 
