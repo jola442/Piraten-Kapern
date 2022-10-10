@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Random;
 
@@ -14,6 +13,8 @@ public class Game {
     private int numCoinDice;
     private int numDiamondDice;
 
+    private int[] heldDice;
+    private int[] inTreasureChest;
     private EnumMap<Card, Integer> fortuneCards;
 
     private Card fortuneCard;
@@ -29,6 +30,9 @@ public class Game {
     public Game(){
         fortuneCards = new EnumMap<Card, Integer>(Card.class);
         fortuneCard = null;
+        heldDice = new int[]{-1, -1, -1, -1, -1, -1, -1, -1};
+        inTreasureChest = new int[]{-1, -1, -1, -1, -1, -1, -1, -1};
+
         dice = new ArrayList<Dice>();
         for(int i = 0; i < Config.NUM_OF_DICE; i++){
             dice.add(null);
@@ -84,6 +88,15 @@ public class Game {
     public void setDice(ArrayList<Dice> dice) {
         this.dice = dice;
     }
+
+    public void setHeldDice(int[] heldDice) {
+        this.heldDice = heldDice;
+    }
+
+    public void setInTreasureChest(int[] inTreasureChest) {
+        this.inTreasureChest = inTreasureChest;
+    }
+
     public Card drawFortuneCard(){
         Random rand = new Random();
 
@@ -177,9 +190,57 @@ public class Game {
         int score = 0;
         countDice();
 
-        //0 points for 3 skulls
         if(numSkullDice >= 3){
-            return 0;
+            if(fortuneCard == Card.CHEST){
+                int numChestCoinDice = 0;
+                int numChestDiamondDice = 0;
+                int numChestSwordDice = 0;
+                int numChestMonkeyDice = 0;
+                int numChestParrotDice = 0;
+
+                for(int j = 0; j < inTreasureChest.length; j++){
+                    int chestDieIndex = inTreasureChest[j];
+                    if(chestDieIndex == -1){
+                        continue;
+                    }
+
+                    if(dice.get(chestDieIndex) == Dice.COIN)
+                        numChestCoinDice++;
+                    if(dice.get(chestDieIndex) == Dice.DIAMOND)
+                        numChestDiamondDice++;
+                    if(dice.get(chestDieIndex) == Dice.SWORD)
+                        numChestSwordDice++;
+                    if(dice.get(chestDieIndex) == Dice.MONKEY)
+                        numChestMonkeyDice++;
+                    if(dice.get(chestDieIndex) == Dice.PARROT)
+                        numChestParrotDice++;
+                }
+
+
+                score += Config.COIN_BONUS * numChestCoinDice;
+                score += Config.COIN_BONUS * numChestDiamondDice;
+
+                if(numChestCoinDice == 5 || numChestDiamondDice == 5|| numChestMonkeyDice == 5 || numChestParrotDice == 5 || numChestSwordDice == 5){
+                    score += Config.FIVE_OF_A_KIND_SCORE;
+                }
+
+                if(numChestCoinDice == 4 || numChestDiamondDice == 4|| numChestMonkeyDice == 4|| numChestParrotDice == 4 || numChestSwordDice == 4){
+                    score += Config.FOUR_OF_A_KIND_SCORE;
+                }
+
+                if(numChestCoinDice == 3 || numChestDiamondDice == 3|| numChestMonkeyDice == 3 || numChestParrotDice == 3 || numChestSwordDice == 3){
+                    score += Config.THREE_OF_A_KIND_SCORE;
+                }
+
+            }
+
+            //0 points for 3 skulls
+            else{
+                return 0;
+            }
+
+            return score;
+
         }
 
         //0 points for 3 skulls including card
@@ -348,6 +409,21 @@ public class Game {
 
         return score;
 
+    }
+
+    public ArrayList<Dice> rerollDice(){
+        Random rand =  new Random();
+        for(int i = 0; i < heldDice.length; i++){
+            if(heldDice[i] == -1){
+                continue;
+            }
+
+            else{
+                int index = rand.nextInt(Dice.values().length);
+                dice.set(heldDice[i],Dice.values()[index]);
+            }
+        }
+        return dice;
     }
 
 
