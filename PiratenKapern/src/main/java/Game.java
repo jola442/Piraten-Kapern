@@ -211,8 +211,15 @@ public class Game {
 
         }
 
+        //Seven of a kind path excluding monkey and parrot dice
+        if(numDiamondDice == 7 || (numDiamondDice == 6 && fortuneCard == Card.DIAMOND)||
+                numCoinDice == 7 || (numCoinDice == 6 && fortuneCard == Card.COIN)||
+                numSwordDice == 7){
+            score += Config.SEVEN_OF_A_KIND_SCORE;
+        }
+
         //Six of a kind path excluding monkey and parrot dice
-        if(numDiamondDice == 6 || (numDiamondDice == 5 && fortuneCard == Card.DIAMOND)||
+        else if(numDiamondDice == 6 || (numDiamondDice == 5 && fortuneCard == Card.DIAMOND)||
                 numCoinDice == 6 || (numCoinDice == 5 && fortuneCard == Card.COIN)||
                 numSwordDice == 6){
             score += Config.SIX_OF_A_KIND_SCORE;
@@ -258,6 +265,10 @@ public class Game {
             else if(numMonkeyDice + numParrotDice == 6){
                 score += Config.SIX_OF_A_KIND_SCORE;
             }
+
+            else if(numMonkeyDice + numParrotDice == 7){
+                score += Config.SEVEN_OF_A_KIND_SCORE;
+            }
         }
 
         //Monkey and parrot dice path
@@ -275,6 +286,10 @@ public class Game {
 
         else if(numMonkeyDice == 6 || numParrotDice == 6){
             score += Config.SIX_OF_A_KIND_SCORE;
+        }
+
+        else if(numMonkeyDice == 7 || numParrotDice == 7){
+            score += Config.SEVEN_OF_A_KIND_SCORE;
         }
 
         if(fortuneCard == Card.CAPTAIN){
