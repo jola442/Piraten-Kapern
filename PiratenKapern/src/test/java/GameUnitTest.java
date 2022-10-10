@@ -401,4 +401,68 @@ class GameUnitTest {
         game.setDice(dice);
         assertEquals((Config.CAPTAIN_MULTIPLIER * (Config.EIGHT_OF_A_KIND_SCORE + Config.FULL_CHEST_BONUS)) , game.calculateScore());
     }
+
+    @Test
+    void testSeaBattles(){
+        game.drawFortuneCard();
+        game.rollDice();
+
+
+        //3 SWORDS DICE + TWO_SWORDS CARD
+        game.setFortuneCard(Game.Card.TWO_SWORDS);
+        ArrayList<Game.Dice> dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.MONKEY, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.TWO_SWORDS_BONUS + Config.THREE_OF_A_KIND_SCORE), game.calculateScore());
+
+
+        //2 SWORDS DICE + TWO_SWORDS CARD
+        game.setFortuneCard(Game.Card.TWO_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals(Config.TWO_SWORDS_BONUS, game.calculateScore());
+
+        //1 SWORDS DIE + 1 COIN DIE + 1 DIAMOND DIE + TWO_SWORDS CARD
+        game.setFortuneCard(Game.Card.TWO_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.COIN_BONUS + Config.DIAMOND_BONUS - Config.TWO_SWORDS_BONUS), game.calculateScore());
+
+        //4 SWORDS DICE + THREE_SWORDS CARD
+        game.setFortuneCard(Game.Card.THREE_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.THREE_SWORDS_BONUS + Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+
+        //3 SWORDS DICE + THREE_SWORDS CARD
+        game.setFortuneCard(Game.Card.THREE_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.MONKEY, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.THREE_SWORDS_BONUS + Config.THREE_OF_A_KIND_SCORE), game.calculateScore());
+
+        //2 SWORDS DICE + 1 COIN DIE + 1 DIAMOND DIE + THREE_SWORDS CARD
+        game.setFortuneCard(Game.Card.THREE_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.COIN_BONUS + Config.DIAMOND_BONUS - Config.THREE_SWORDS_BONUS), game.calculateScore());
+
+        //5 SWORDS DICE + FOUR_SWORDS CARD
+        game.setFortuneCard(Game.Card.FOUR_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.FOUR_SWORDS_BONUS + Config.FIVE_OF_A_KIND_SCORE), game.calculateScore());
+
+
+        //4 SWORDS DICE + FOUR_SWORDS CARD
+        game.setFortuneCard(Game.Card.FOUR_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.FOUR_SWORDS_BONUS + Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+        //3 SWORDS DICE + 1 COIN DIE + 1 DIAMOND DIE + FOUR_SWORDS CARD
+        game.setFortuneCard(Game.Card.FOUR_SWORDS);
+        dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.MONKEY, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.THREE_OF_A_KIND_SCORE + Config.COIN_BONUS + Config.DIAMOND_BONUS - Config.FOUR_SWORDS_BONUS), game.calculateScore());
+    }
 }
