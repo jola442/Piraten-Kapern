@@ -16,6 +16,7 @@ public class Game {
 
     private EnumMap<Card, Integer> fortuneCards;
 
+    private Card fortuneCard;
     public enum Card {
         CHEST, SORCERESS, CAPTAIN, MONKEY_AND_PARROT, DIAMOND, COIN, TWO_SKULLS, ONE_SKULL, TWO_SWORDS, THREE_SWORDS, FOUR_SWORDS;
     }
@@ -27,6 +28,7 @@ public class Game {
 
     public Game(){
         fortuneCards = new EnumMap<Card, Integer>(Card.class);
+        fortuneCard = null;
         dice = new ArrayList<Dice>();
         for(int i = 0; i < Config.NUM_OF_DICE; i++){
             dice.add(null);
@@ -65,8 +67,18 @@ public class Game {
         return numCards;
     }
 
+
+
     public EnumMap<Card, Integer> getFortuneCards() {
         return fortuneCards;
+    }
+
+    public Card getFortuneCard() {
+        return fortuneCard;
+    }
+
+    public void setFortuneCard(Card fortuneCard) {
+        this.fortuneCard = fortuneCard;
     }
 
     public void setDice(ArrayList<Dice> dice) {
@@ -96,6 +108,8 @@ public class Game {
         if(numCards == 0){
             restockCards();
         }
+
+        fortuneCard = card;
         return card;
     }
 
@@ -125,6 +139,12 @@ public class Game {
     }
 
     public void countDice(){
+        numMonkeyDice = 0;
+        numParrotDice = 0;
+        numSwordDice = 0;
+        numSkullDice = 0;
+        numCoinDice = 0;
+        numDiamondDice = 0;
         for(int i = 0; i < dice.size(); i++){
             if(dice.get(i) == Dice.MONKEY){
                 numMonkeyDice++;
@@ -152,6 +172,74 @@ public class Game {
             }
         }
     }
+
+    public int calculateScore(){
+        int score = 0;
+        countDice();
+
+        //0 points for 3 skulls
+        if(numSkullDice >= 3){
+            return 0;
+        }
+
+        //0 points for 3 skulls including card
+        if(numSkullDice == 1 & fortuneCard == Card.TWO_SKULLS || numSkullDice == 2 & fortuneCard == Card.ONE_SKULL){
+            return 0;
+        }
+
+        //Add face value bonus for coins
+        if(numCoinDice >= 1){
+            if(fortuneCard == Card.COIN){
+                score += Config.COIN_BONUS * (numCoinDice+1);
+            }
+
+            else{
+                score += Config.COIN_BONUS * numCoinDice;
+            }
+
+        }
+
+        //Add face value bonus for diamonds
+        if(numDiamondDice >= 1){
+            if(fortuneCard == Card.DIAMOND){
+                score += score += Config.DIAMOND_BONUS * (numDiamondDice+1);
+            }
+
+            else{
+                score += Config.DIAMOND_BONUS * numDiamondDice;
+            }
+
+        }
+
+        //Three of a kind path excluding monkey and parrot dice
+        if(numDiamondDice == 3 || (numDiamondDice == 2 && fortuneCard == Card.DIAMOND)||
+                numCoinDice == 3 || (numCoinDice == 2 && fortuneCard == Card.COIN)||
+                numSwordDice == 3){
+            score += Config.THREE_OF_A_KIND_SCORE;
+        }
+
+        //Monkey and Parrot card path
+        if(fortuneCard == Card.MONKEY_AND_PARROT){
+            if(numMonkeyDice + numParrotDice == 3){
+                score += Config.THREE_OF_A_KIND_SCORE;
+            }
+        }
+
+        //Monkey and parrot dice path
+        else if(numMonkeyDice == 3 || numParrotDice == 3){
+            score += Config.THREE_OF_A_KIND_SCORE;
+        }
+
+
+        if(fortuneCard == Card.CAPTAIN){
+            score *= Config.CAPTAIN_MULTIPLIER;
+        }
+
+
+        return score;
+
+    }
+
 
 
 

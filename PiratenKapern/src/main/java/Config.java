@@ -14,4 +14,8 @@ public class Config {
     public static final int NUM_OF_THREE_SWORDS_CARDS = 2;
     public static final int NUM_OF_FOUR_SWORDS_CARDS = 2;
     public static final int NUM_OF_DICE = 8;
+    public static final int COIN_BONUS = 100;
+    public static final int DIAMOND_BONUS = 100;
+    public static final int THREE_OF_A_KIND_SCORE = 100;
+    public static final int CAPTAIN_MULTIPLIER = 2;
 }
