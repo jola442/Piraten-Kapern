@@ -137,4 +137,58 @@ class GameUnitTest {
         assertEquals((Config.CAPTAIN_MULTIPLIER * Config.THREE_OF_A_KIND_SCORE), game.calculateScore());
     }
 
+    @Test
+    void testFourOfAKind(){
+        game.drawFortuneCard();
+        game.rollDice();
+
+
+        //3 COIN DICE + 1 COIN CARD
+        game.setFortuneCard(Game.Card.COIN);
+        ArrayList<Game.Dice> dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.COIN, Game.Dice.COIN, Game.Dice.COIN, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.COIN_BONUS*4) + (Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+        //4 COIN DICE + 1 ONE_SKULL CARD
+        game.setFortuneCard(Game.Card.ONE_SKULL);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.COIN, Game.Dice.COIN, Game.Dice.COIN, Game.Dice.COIN, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.COIN_BONUS*4) + (Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+        //3 DIAMOND DICE + 1 DIAMOND CARD
+        game.setFortuneCard(Game.Card.DIAMOND);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.DIAMOND, Game.Dice.DIAMOND, Game.Dice.DIAMOND, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.DIAMOND_BONUS*4) + (Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+        //4 DIAMOND DICE + 1 ONE_SKULL CARD
+        game.setFortuneCard(Game.Card.ONE_SKULL);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.DIAMOND, Game.Dice.DIAMOND, Game.Dice.DIAMOND, Game.Dice.DIAMOND, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.COIN_BONUS*4) + (Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+        //1 PARROT DIE + 3 MONKEY DICE + MONKEY_AND_PARROT CARD
+        game.setFortuneCard(Game.Card.MONKEY_AND_PARROT);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.PARROT, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SWORD, Game.Dice.SWORD));
+        game.setDice(dice);
+        assertEquals(Config.FOUR_OF_A_KIND_SCORE, game.calculateScore());
+
+        //2 PARROT DIE + 2 MONKEY DICE + MONKEY_AND_PARROT CARD
+        game.setFortuneCard(Game.Card.MONKEY_AND_PARROT);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.PARROT, Game.Dice.PARROT, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SWORD, Game.Dice.SWORD));
+        game.setDice(dice);
+        assertEquals((Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+        //4 MONKEY DICE + 1 ONE_SKULL CARD
+        game.setFortuneCard(Game.Card.ONE_SKULL);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+
+        //4 MONKEY DICE + CAPTAIN_CARD
+        game.setFortuneCard(Game.Card.CAPTAIN);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals((Config.CAPTAIN_MULTIPLIER * Config.FOUR_OF_A_KIND_SCORE), game.calculateScore());
+    }
 }
