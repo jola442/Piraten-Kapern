@@ -474,13 +474,14 @@ class GameUnitTest {
         ArrayList<Game.Dice> dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.COIN, Game.Dice.COIN, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
         game.setDice(dice);
 
-        //hold only dice in index 0,1,2 and 3
-        int[] held = {0,1,2,3,-1,-1,-1,-1};
 
-        //place only dice in index 0,1,2 and 3 in treasure chest
-        int[] inTreasureChest = {0,1,2,3,-1,-1,-1,-1};
-        game.setHeldDice(held);
-        game.setInTreasureChest(inTreasureChest);
+        ArrayList <Integer> diceToReroll = new ArrayList<>(Arrays.asList(4,5,6,7));
+        game.setDiceToReroll(diceToReroll);;
+
+
+        ArrayList <Integer> diceInTreasureChest = new ArrayList<>(Arrays.asList(0,1,2,3));
+        game.setInTreasureChest(diceInTreasureChest);
+
         game.rerollDice();
 
         //3 SKULLS

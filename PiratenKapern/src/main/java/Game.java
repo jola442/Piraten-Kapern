@@ -13,8 +13,8 @@ public class Game {
     private int numCoinDice;
     private int numDiamondDice;
 
-    private int[] heldDice;
-    private int[] inTreasureChest;
+    private ArrayList<Integer> diceToReroll;
+    private ArrayList<Integer> inTreasureChest;
     private EnumMap<Card, Integer> fortuneCards;
 
     private Card fortuneCard;
@@ -30,8 +30,8 @@ public class Game {
     public Game(){
         fortuneCards = new EnumMap<Card, Integer>(Card.class);
         fortuneCard = null;
-        heldDice = new int[]{-1, -1, -1, -1, -1, -1, -1, -1};
-        inTreasureChest = new int[]{-1, -1, -1, -1, -1, -1, -1, -1};
+        diceToReroll = new ArrayList<>();
+        inTreasureChest = new ArrayList<>();
 
         dice = new ArrayList<Dice>();
         for(int i = 0; i < Config.NUM_OF_DICE; i++){
@@ -89,11 +89,11 @@ public class Game {
         this.dice = dice;
     }
 
-    public void setHeldDice(int[] heldDice) {
-        this.heldDice = heldDice;
+    public void setDiceToReroll(ArrayList<Integer> diceToReroll) {
+        this.diceToReroll = diceToReroll;
     }
 
-    public void setInTreasureChest(int[] inTreasureChest) {
+    public void setInTreasureChest(ArrayList<Integer >inTreasureChest) {
         this.inTreasureChest = inTreasureChest;
     }
 
@@ -198,8 +198,8 @@ public class Game {
                 int numChestMonkeyDice = 0;
                 int numChestParrotDice = 0;
 
-                for(int j = 0; j < inTreasureChest.length; j++){
-                    int chestDieIndex = inTreasureChest[j];
+                for(int j = 0; j < inTreasureChest.size(); j++){
+                    int chestDieIndex = inTreasureChest.get(j);
                     if(chestDieIndex == -1){
                         continue;
                     }
@@ -248,79 +248,160 @@ public class Game {
             return 0;
         }
 
-        //Add face value bonus for coins
+        //Add coin bonus for coin fortune card
+        if(fortuneCard == Card.COIN){
+            score += Config.COIN_BONUS;
+        }
+
+        //Add face value bonus for diamond card
+        else if(fortuneCard == Card.DIAMOND){
+            score += Config.DIAMOND_BONUS;
+        }
+
+
+        //Add face value bonus for coin dice
         if(numCoinDice >= 1){
-            if(fortuneCard == Card.COIN){
-                score += Config.COIN_BONUS * (numCoinDice+1);
-            }
-
-            else{
-                score += Config.COIN_BONUS * numCoinDice;
-            }
-
+            score += Config.COIN_BONUS * numCoinDice;
         }
 
-        //Add face value bonus for diamonds
+        //Add face value bonus for diamond dice
         if(numDiamondDice >= 1){
-            if(fortuneCard == Card.DIAMOND){
-                score += Config.DIAMOND_BONUS * (numDiamondDice+1);
-            }
-
-            else{
-                score += Config.DIAMOND_BONUS * numDiamondDice;
-            }
-
+            score += Config.DIAMOND_BONUS * numDiamondDice;
         }
 
-        //Eight of a kind path excluding monkey and parrot dice
-        if((numDiamondDice == 7 && fortuneCard == Card.DIAMOND)|| (numCoinDice == 7 && fortuneCard == Card.COIN)){
-            score += Config.EIGHT_OF_A_KIND_SCORE;
-        }
-
-        else if(numDiamondDice == 8 || numCoinDice == 8 || numSwordDice == 8){
+        //Eight of a kind excluding monkey and parrot dice
+        if(numSwordDice == 8 || numCoinDice == 8 || numDiamondDice == 8){
             score += Config.EIGHT_OF_A_KIND_SCORE + Config.FULL_CHEST_BONUS;
         }
 
+        //Checking for X of a Kind with sword dice
 
-
-        //Seven of a kind path excluding monkey and parrot dice
-        else if(numDiamondDice == 7 || (numDiamondDice == 6 && fortuneCard == Card.DIAMOND)||
-                numCoinDice == 7 || (numCoinDice == 6 && fortuneCard == Card.COIN)||
-                numSwordDice == 7){
+        else if(numSwordDice == 7){
             score += Config.SEVEN_OF_A_KIND_SCORE;
         }
 
-        //Six of a kind path excluding monkey and parrot dice
-        else if(numDiamondDice == 6 || (numDiamondDice == 5 && fortuneCard == Card.DIAMOND)||
-                numCoinDice == 6 || (numCoinDice == 5 && fortuneCard == Card.COIN)||
-                numSwordDice == 6){
+        else if(numSwordDice == 6){
             score += Config.SIX_OF_A_KIND_SCORE;
         }
 
-        //Five of a kind path excluding monkey and parrot dice
-        else if(numDiamondDice == 5 || (numDiamondDice == 4 && fortuneCard == Card.DIAMOND)||
-                numCoinDice == 5 || (numCoinDice == 4 && fortuneCard == Card.COIN)||
-                numSwordDice == 5){
+        else if(numSwordDice == 5){
             score += Config.FIVE_OF_A_KIND_SCORE;
         }
 
-        //Four of a kind path excluding monkey and parrot dice
-        else if(numDiamondDice == 4 || (numDiamondDice == 3 && fortuneCard == Card.DIAMOND)||
-                numCoinDice == 4 || (numCoinDice == 3 && fortuneCard == Card.COIN)||
-                numSwordDice == 4){
+        else if(numSwordDice == 4){
             score += Config.FOUR_OF_A_KIND_SCORE;
         }
 
-        //Three of a kind path excluding monkey and parrot dice
-        else if(numDiamondDice == 3 || (numDiamondDice == 2 && fortuneCard == Card.DIAMOND)||
-                numCoinDice == 3 || (numCoinDice == 2 && fortuneCard == Card.COIN)||
-                numSwordDice == 3){
+        else if(numSwordDice == 3){
             score += Config.THREE_OF_A_KIND_SCORE;
         }
 
+        //Checking for X of a Kind with diamond dice and diamond card
+
+        if(numDiamondDice == 7) {
+            if (fortuneCard == Card.DIAMOND) {
+                score += Config.EIGHT_OF_A_KIND_SCORE;
+            } else {
+                score += Config.SEVEN_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numDiamondDice == 6){
+            if(fortuneCard == Card.DIAMOND){
+                score+= Config.SEVEN_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.SIX_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numDiamondDice == 5){
+            if(fortuneCard == Card.DIAMOND){
+                score+= Config.SIX_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.FIVE_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numDiamondDice == 4){
+            if(fortuneCard == Card.DIAMOND){
+                score+= Config.FIVE_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.FOUR_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numDiamondDice == 3){
+            if(fortuneCard == Card.DIAMOND){
+                score+= Config.FOUR_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.THREE_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numDiamondDice == 2 && fortuneCard == Card.DIAMOND){score+= Config.THREE_OF_A_KIND_SCORE;}
+
+        //Checking for X of a Kind with coin dice and coin card
+
+        if(numCoinDice == 7) {
+            if (fortuneCard == Card.COIN) {
+                score += Config.EIGHT_OF_A_KIND_SCORE;
+            } else {
+                score += Config.SEVEN_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numCoinDice == 6){
+            if(fortuneCard == Card.COIN){
+                score+= Config.SEVEN_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.SIX_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numCoinDice == 5){
+            if(fortuneCard == Card.COIN){
+                score+= Config.SIX_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.FIVE_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numCoinDice == 4){
+            if(fortuneCard == Card.COIN){
+                score+= Config.FIVE_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.FOUR_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numCoinDice == 3){
+            if(fortuneCard == Card.COIN){
+                score+= Config.FOUR_OF_A_KIND_SCORE;
+            }
+
+            else{
+                score += Config.THREE_OF_A_KIND_SCORE;
+            }
+        }
+
+        else if(numCoinDice == 2 && fortuneCard == Card.COIN){score+= Config.THREE_OF_A_KIND_SCORE;}
 
 
-        //Monkey and Parrot card path
+        //Checking for X of a kind for monkey and parrot dice with the monkey and parrot card
         if(fortuneCard == Card.MONKEY_AND_PARROT){
             if(numMonkeyDice + numParrotDice == 3){
                 score += Config.THREE_OF_A_KIND_SCORE;
@@ -347,7 +428,7 @@ public class Game {
             }
         }
 
-        //Monkey and parrot dice path
+        //Checking for X of a kind with monkey and parrot dice
         else if(numMonkeyDice == 3 || numParrotDice == 3){
             score += Config.THREE_OF_A_KIND_SCORE;
         }
@@ -372,7 +453,7 @@ public class Game {
             score += Config.EIGHT_OF_A_KIND_SCORE + Config.FULL_CHEST_BONUS;
         }
 
-        if(fortuneCard == Card.TWO_SWORDS){
+        else if(fortuneCard == Card.TWO_SWORDS){
             if(numSwordDice >= 2){
                 score += Config.TWO_SWORDS_BONUS;
             }
@@ -413,21 +494,11 @@ public class Game {
 
     public ArrayList<Dice> rerollDice(){
         Random rand =  new Random();
-        for(int i = 0; i < heldDice.length; i++){
-            if(heldDice[i] == -1){
-                continue;
-            }
-
-            else{
-                int index = rand.nextInt(Dice.values().length);
-                dice.set(heldDice[i],Dice.values()[index]);
-            }
+        for(int i = 0; i < diceToReroll.size(); i++){
+            int index = rand.nextInt(Dice.values().length);
+            dice.set(diceToReroll.get(i),Dice.values()[index]);
         }
         return dice;
     }
 
-
-
-
 }
-
