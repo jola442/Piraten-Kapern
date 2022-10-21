@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;
 
-public class Game {
+public class Game implements Serializable{
     private int numCards;
 
     private ArrayList<Dice> dice;
@@ -18,11 +19,11 @@ public class Game {
     private EnumMap<Card, Integer> fortuneCards;
 
     private Card fortuneCard;
-    public enum Card {
+    public enum Card{
         CHEST, SORCERESS, CAPTAIN, MONKEY_AND_PARROT, DIAMOND, COIN, TWO_SKULLS, ONE_SKULL, TWO_SWORDS, THREE_SWORDS, FOUR_SWORDS;
     }
 
-    public enum Dice {
+    public enum Dice{
         MONKEY, PARROT, SWORD, SKULL, COIN, DIAMOND
     }
 
@@ -70,6 +71,9 @@ public class Game {
     public int getNumCards() {
         return numCards;
     }
+    public ArrayList<Integer> getInTreasureChest() {
+        return inTreasureChest;
+    }
 
 
 
@@ -92,6 +96,7 @@ public class Game {
     public void setDiceToReroll(ArrayList<Integer> diceToReroll) {
         this.diceToReroll = diceToReroll;
     }
+
 
     public void setInTreasureChest(ArrayList<Integer >inTreasureChest) {
         this.inTreasureChest = inTreasureChest;

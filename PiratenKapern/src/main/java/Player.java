@@ -3,24 +3,47 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private String name;
+    private int score;
+    private int playerId;
 
-    int playerId = 0;
+    private static Client clientConnection;
 
-    static Client clientConnection;
+    public Player(){
+        name = "";
+        score = 0;
+        playerId = 0;
+    }
+
+    public Player(String name){
+        this.name = name;
+        score = 0;
+        playerId = 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
 
     /*
      * ----------Network Stuff------------
      */
-    public void sendStringToServer(String str) {
-        clientConnection.sendString(str);
-    }
 
     public void connectToClient() {
         clientConnection = new Client();
@@ -30,8 +53,30 @@ public class Player implements Serializable {
         clientConnection = new Client(port);
     }
 
-    public Player getPlayer() {
-        return this;
+    public void startGame(){
+        //msg = You are player X
+        String msgFromServer = clientConnection.receiveString();
+        String msgToServer = "";
+        System.out.println(msgFromServer);
+        Scanner in = new Scanner(System.in);
+
+        while(true){
+            msgFromServer = clientConnection.receiveString();
+            if(msgFromServer.contains("dead")){
+                System.out.println(Config.ANSI_RED + msgFromServer + Config.ANSI_RESET);
+            }
+
+            else if(msgFromServer.contains("?")){
+                System.out.println(msgFromServer);
+                msgToServer = in.nextLine();
+                clientConnection.sendString(msgToServer);
+            }
+
+            else{
+                System.out.println(msgFromServer);
+            }
+
+        }
     }
 
 
@@ -48,19 +93,12 @@ public class Player implements Serializable {
 
                 playerId = inputFromServer.readInt();
 
-                System.out.println("Connected as " + playerId);
-//                Scanner in = new Scanner(System.in);
-//                System.out.println("Send a message to the server");
-//                String msgToServer = "";
-
-//                while (!"stop".equalsIgnoreCase(msgToServer)) {
-//                    msgToServer = in.nextLine();
-//                    System.out.println("Sending this to the server: " + msgToServer);
-//                    outputToServer.writeUTF(msgToServer);
-//                    outputToServer.flush();
-//                    String responseFromServer = inputFromServer.readUTF();
-//                    System.out.println("Server's response: " + responseFromServer);
-//                }
+                System.out.println("Connected as Player " + playerId);
+                Scanner in = new Scanner(System.in);
+                System.out.println("What is your name?");
+                String name = in.nextLine();
+                outputToServer.writeUTF(name);
+                outputToServer.flush();
 
             } catch (IOException ex) {
                 System.out.println("Client failed to open");
@@ -74,30 +112,24 @@ public class Player implements Serializable {
                 inputFromServer = new ObjectInputStream(socket.getInputStream());
 
                 playerId = inputFromServer.readInt();
-
                 System.out.println("Connected as " + playerId);
-//                Scanner in = new Scanner(System.in);
-//                System.out.println("Send a message to the server");
-//                String msgToServer = "";
-
-//                while (!"stop".equalsIgnoreCase(msgToServer)) {
-//                    msgToServer = in.nextLine();
-//                    System.out.println("Sending this to the server: " + msgToServer);
-//                    outputToServer.writeUTF(msgToServer);
-//                    outputToServer.flush();
-//                    String responseFromServer = inputFromServer.readUTF();
-//                    System.out.println("Server's response: " + responseFromServer);
-//                }
-
             } catch (IOException ex) {
                 System.out.println("Client failed to open");
             }
         }
 
 
-        /*
-         * function to send strings
-         */
+        public String receiveString() {
+            try {
+                return inputFromServer.readUTF();
+            } catch (IOException ex) {
+                System.out.println("String not sent");
+                ex.printStackTrace();
+            }
+            return "";
+        }
+
+
         public void sendString(String str) {
             try {
                 outputToServer.writeUTF(str);
@@ -107,6 +139,7 @@ public class Player implements Serializable {
                 ex.printStackTrace();
             }
         }
+
     }
 
 
@@ -114,12 +147,9 @@ public class Player implements Serializable {
          * ---------Constructor and Main class-----------
          */
         public static void main(String args[]) {
-            Scanner in = new Scanner(System.in);
-            System.out.println("Type a message to the server");
-            String msg = in.nextLine();
             Player p = new Player();
             p.connectToClient();
-            clientConnection.sendString(msg);
+            p.startGame();
         }
+    }
 
-}
