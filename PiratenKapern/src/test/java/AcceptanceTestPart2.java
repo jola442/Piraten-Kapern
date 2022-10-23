@@ -327,7 +327,7 @@ class AcceptanceTestPart2 {
         ArrayList<Game.Dice> dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY));
         game.setDice(dice);
 
-        ArrayList <Integer> diceToReroll = new ArrayList<>(Arrays.asList(2,3,4));
+        ArrayList <Integer> diceToReroll = new ArrayList<>(Arrays.asList(5,6,7));
         game.setDiceToReroll(diceToReroll);
         game.rerollDice();
 
@@ -476,7 +476,7 @@ class AcceptanceTestPart2 {
         game.getDice().set(3, Game.Dice.SWORD);
 
 //        game.reportDeduction();
-        assertEquals(-500, game.getSkullIslandDeduction());
+        assertEquals(-500, game.calculateScore());
     }
 
     @Test

@@ -242,6 +242,19 @@ public class Game implements Serializable{
 
                     return score;
                 }
+
+                else if(fortuneCard == Card.TWO_SWORDS){
+                    score -= Config.TWO_SWORDS_BONUS;
+                }
+
+                else if(fortuneCard == Card.THREE_SWORDS){
+                    score -= Config.THREE_SWORDS_BONUS;
+                }
+
+                else if(fortuneCard == Card.FOUR_SWORDS){
+                    score -= Config.FOUR_SWORDS_BONUS;
+                }
+                return score;
             }
 
         }
@@ -516,6 +529,12 @@ public class Game implements Serializable{
             }
         }
 
+        //Edge case where having only two swords contributes to scoring dice
+        if(numScoringDice < 8){
+            if(fortuneCard == Card.TWO_SWORDS){
+                numScoringDice += 2;
+            }
+        }
         if(numScoringDice == 8){
             score += Config.FULL_CHEST_BONUS;
         }
