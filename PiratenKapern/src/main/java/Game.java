@@ -539,7 +539,24 @@ public class Game implements Serializable{
     }
 
     public int getSkullIslandDeduction(){
-        return 0;
+        countDice();
+        int deduction = 0;
+
+        deduction -= numSkullDice * Config.SKULL_DEDUCTION;
+
+        if(fortuneCard == Card.ONE_SKULL){
+            deduction -= Config.SKULL_DEDUCTION;
+        }
+
+        else if(fortuneCard == Card.TWO_SKULLS){
+            deduction -= Config.SKULL_DEDUCTION*2;
+        }
+
+        else if(fortuneCard == Card.CAPTAIN){
+            deduction *= Config.CAPTAIN_MULTIPLIER;
+        }
+
+        return deduction;
     }
 
 

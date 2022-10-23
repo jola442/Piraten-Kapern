@@ -27,6 +27,7 @@ public class Config {
     public static final int FOUR_SWORDS_BONUS = 1000;
     public static final int FULL_CHEST_BONUS = 500;
     public static final int CAPTAIN_MULTIPLIER = 2;
+    public static final int SKULL_DEDUCTION = 100;
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
 }
