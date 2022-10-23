@@ -192,7 +192,7 @@ class AcceptanceTestPart2 {
 
         game.getDice().set(2, Game.Dice.SKULL);
         game.getDice().set(3, Game.Dice.COIN);
-        game.reportDeath();
+//        game.reportDeath();
 
         assertEquals(600, game.calculateScore());
     }
@@ -476,7 +476,7 @@ class AcceptanceTestPart2 {
         game.getDice().set(3, Game.Dice.SWORD);
 
 //        game.reportDeduction();
-        assertEquals(-500, game.calculateScore());
+        assertEquals(-500, game.getSkullIslandDeduction());
     }
 
     @Test

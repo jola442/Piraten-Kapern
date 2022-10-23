@@ -425,7 +425,7 @@ class GameUnitTest {
         game.setFortuneCard(Game.Card.TWO_SWORDS);
         dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.PARROT, Game.Dice.PARROT));
         game.setDice(dice);
-        assertEquals((Config.COIN_BONUS + Config.DIAMOND_BONUS - Config.TWO_SWORDS_BONUS), game.calculateScore());
+        assertEquals(-Config.TWO_SWORDS_BONUS, game.calculateScore());
 
         //4 SWORDS DICE + THREE_SWORDS CARD
         game.setFortuneCard(Game.Card.THREE_SWORDS);
@@ -444,7 +444,7 @@ class GameUnitTest {
         game.setFortuneCard(Game.Card.THREE_SWORDS);
         dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.PARROT, Game.Dice.PARROT));
         game.setDice(dice);
-        assertEquals((Config.COIN_BONUS + Config.DIAMOND_BONUS - Config.THREE_SWORDS_BONUS), game.calculateScore());
+        assertEquals(- Config.THREE_SWORDS_BONUS, game.calculateScore());
 
         //5 SWORDS DICE + FOUR_SWORDS CARD
         game.setFortuneCard(Game.Card.FOUR_SWORDS);
@@ -463,7 +463,7 @@ class GameUnitTest {
         game.setFortuneCard(Game.Card.FOUR_SWORDS);
         dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.MONKEY, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.PARROT, Game.Dice.PARROT));
         game.setDice(dice);
-        assertEquals((Config.THREE_OF_A_KIND_SCORE + Config.COIN_BONUS + Config.DIAMOND_BONUS - Config.FOUR_SWORDS_BONUS), game.calculateScore());
+        assertEquals(- Config.FOUR_SWORDS_BONUS, game.calculateScore());
     }
 
     @Test
