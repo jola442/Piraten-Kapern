@@ -491,4 +491,28 @@ class GameUnitTest {
         assertEquals((Config.COIN_BONUS*3) + Config.DIAMOND_BONUS + (Config.THREE_OF_A_KIND_SCORE),game.calculateScore());
     }
 
+    @Test
+    void testSkullIslandDeductions(){
+        game.drawFortuneCard();
+        game.rollDice();
+
+        //2 SKULLS DICE + TWO_SKULLS CARD
+        game.setFortuneCard(Game.Card.TWO_SKULLS);
+        ArrayList<Game.Dice> dice = new ArrayList <Game.Dice>(Arrays.asList(Game.Dice.COIN, Game.Dice.COIN, Game.Dice.COIN, Game.Dice.DIAMOND, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+        game.setDice(dice);
+        assertEquals(-(Config.SKULL_DEDUCTION*4), game.getSkullIslandDeduction());
+
+        //2 SKULLS DICE + ONE_SKULL CARD
+        game.setFortuneCard(Game.Card.ONE_SKULL);
+        assertEquals(-(Config.SKULL_DEDUCTION*3), game.getSkullIslandDeduction());
+
+        //2 SKULLS DICE + COIN CARD
+        game.setFortuneCard(Game.Card.COIN);
+        assertEquals(-(Config.SKULL_DEDUCTION*2), game.getSkullIslandDeduction());
+
+        //2 SKULLS DICE + CAPTAIN CARD
+        game.setFortuneCard(Game.Card.CAPTAIN);
+        assertEquals(-(Config.SKULL_DEDUCTION*2)*Config.CAPTAIN_MULTIPLIER, game.getSkullIslandDeduction());
+    }
+
 }
