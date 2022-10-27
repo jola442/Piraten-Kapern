@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Player implements Serializable {
+public class Player{
 
     private static final long serialVersionUID = 1L;
     private String name;
@@ -62,7 +62,7 @@ public class Player implements Serializable {
 
         while(true){
             msgFromServer = clientConnection.receiveString();
-            if(msgFromServer.contains("dead")){
+            if(msgFromServer.contains("dead") || msgFromServer.contains("Skulls")){
                 System.out.println(Config.ANSI_RED + msgFromServer + Config.ANSI_RESET);
             }
 
@@ -97,8 +97,7 @@ public class Player implements Serializable {
                 Scanner in = new Scanner(System.in);
                 System.out.println("What is your name?");
                 String name = in.nextLine();
-                outputToServer.writeUTF(name);
-                outputToServer.flush();
+                sendString(name);
 
             } catch (IOException ex) {
                 System.out.println("Client failed to open");
