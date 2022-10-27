@@ -1,9 +1,8 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;
 
-public class Game implements Serializable{
+public class Game{
     private int numCards;
 
     private ArrayList<Dice> dice;
@@ -15,7 +14,7 @@ public class Game implements Serializable{
     private int numDiamondDice;
 
     private ArrayList<Integer> diceToReroll;
-    private ArrayList<Integer> inTreasureChest;
+    private ArrayList<Integer> diceInTreasureChest;
     private EnumMap<Card, Integer> fortuneCards;
 
     private Card fortuneCard;
@@ -32,7 +31,7 @@ public class Game implements Serializable{
         fortuneCards = new EnumMap<Card, Integer>(Card.class);
         fortuneCard = null;
         diceToReroll = new ArrayList<>();
-        inTreasureChest = new ArrayList<>();
+        diceInTreasureChest = new ArrayList<>();
 
         dice = new ArrayList<Dice>();
         for(int i = 0; i < Config.NUM_OF_DICE; i++){
@@ -71,8 +70,8 @@ public class Game implements Serializable{
     public int getNumCards() {
         return numCards;
     }
-    public ArrayList<Integer> getInTreasureChest() {
-        return inTreasureChest;
+    public ArrayList<Integer> getDiceInTreasureChest() {
+        return diceInTreasureChest;
     }
 
 
@@ -98,8 +97,8 @@ public class Game implements Serializable{
     }
 
 
-    public void setInTreasureChest(ArrayList<Integer >inTreasureChest) {
-        this.inTreasureChest = inTreasureChest;
+    public void setDiceInTreasureChest(ArrayList<Integer > diceInTreasureChest) {
+        this.diceInTreasureChest = diceInTreasureChest;
     }
 
     public Card drawFortuneCard(){
@@ -210,8 +209,8 @@ public class Game implements Serializable{
                     int numChestMonkeyDice = 0;
                     int numChestParrotDice = 0;
 
-                    for (int j = 0; j < inTreasureChest.size(); j++) {
-                        int chestDieIndex = inTreasureChest.get(j);
+                    for (int j = 0; j < diceInTreasureChest.size(); j++) {
+                        int chestDieIndex = diceInTreasureChest.get(j);
                         if (dice.get(chestDieIndex) == Dice.COIN)
                             numChestCoinDice++;
                         else if (dice.get(chestDieIndex) == Dice.DIAMOND)
@@ -554,6 +553,7 @@ public class Game implements Serializable{
             int index = rand.nextInt(Dice.values().length);
             dice.set(diceToReroll.get(i),Dice.values()[index]);
         }
+        countDice();
         return dice;
     }
 

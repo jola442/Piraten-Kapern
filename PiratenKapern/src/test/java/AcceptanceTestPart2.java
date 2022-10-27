@@ -140,7 +140,7 @@ class AcceptanceTestPart2 {
         game.setDice(dice);
 
         ArrayList <Integer> diceInTreasureChest = new ArrayList<>(Arrays.asList(5,6,7));
-        game.setInTreasureChest(diceInTreasureChest);
+        game.setDiceInTreasureChest(diceInTreasureChest);
 
         ArrayList <Integer> diceToReroll = new ArrayList<>(Arrays.asList(3,4));
         game.setDiceToReroll(diceToReroll);
@@ -149,8 +149,8 @@ class AcceptanceTestPart2 {
         game.getDice().set(3,Game.Dice.PARROT);
         game.getDice().set(4,Game.Dice.PARROT);
 
-        game.getInTreasureChest().addAll(Arrays.asList(0,1,2,3,4));
-        game.getInTreasureChest().removeAll(Arrays.asList(5,6,7));
+        game.getDiceInTreasureChest().addAll(Arrays.asList(0,1,2,3,4));
+        game.getDiceInTreasureChest().removeAll(Arrays.asList(5,6,7));
 
         diceToReroll.clear();;
         diceToReroll.addAll(Arrays.asList(5,6,7));
@@ -173,7 +173,7 @@ class AcceptanceTestPart2 {
         game.setDice(dice);
 
         ArrayList <Integer> diceInTreasureChest = new ArrayList<>(Arrays.asList(5,6,7));
-        game.setInTreasureChest(diceInTreasureChest);
+        game.setDiceInTreasureChest(diceInTreasureChest);
 
         ArrayList <Integer> diceToReroll = new ArrayList<>(Arrays.asList(2,3,4));
         game.setDiceToReroll(diceToReroll);
@@ -183,7 +183,7 @@ class AcceptanceTestPart2 {
         game.getDice().set(3,Game.Dice.DIAMOND);
         game.getDice().set(4,Game.Dice.COIN);
 
-        game.getInTreasureChest().add(4);
+        game.getDiceInTreasureChest().add(4);
 
         diceToReroll.clear();
         diceToReroll.addAll(Arrays.asList(2,3));

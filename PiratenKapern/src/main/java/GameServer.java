@@ -90,7 +90,7 @@ public class GameServer{
         String msgToClient = "";
         String msgFromClient = "";
         usedSorceress = false;
-        game.getInTreasureChest().clear();
+        game.getDiceInTreasureChest().clear();
 
         serverThread.sendScoreBoard();
         game.drawFortuneCard();
@@ -135,7 +135,6 @@ public class GameServer{
                             ArrayList<Integer> diceToReroll = new ArrayList<>(Arrays.asList(skullIndex));
                             game.setDiceToReroll(diceToReroll);
                             game.rerollDice();
-                            game.countDice();
                         }
 
                         else{
@@ -171,19 +170,19 @@ public class GameServer{
                             ArrayList<String> diceStringList = new ArrayList<>(Arrays.asList(msgFromClient.split(",")));
                             ArrayList<Integer> treasureChestDice;
 
-                            if(game.getInTreasureChest().isEmpty()){
+                            if(game.getDiceInTreasureChest().isEmpty()){
                                 treasureChestDice = new ArrayList<>();
                             }
 
                             else{
-                                treasureChestDice = game.getInTreasureChest();
+                                treasureChestDice = game.getDiceInTreasureChest();
                             }
 
 //
                             try {
                                 for (int i = 0; i < diceStringList.size(); i++) {
                                     int diceNum = Integer.parseInt(diceStringList.get(i));
-                                    if (diceNum >= 1 && diceNum <= 8 && !game.getInTreasureChest().contains(diceNum-1)) {
+                                    if (diceNum >= 1 && diceNum <= 8 && !game.getDiceInTreasureChest().contains(diceNum-1)) {
                                         if (game.getDice().get(diceNum - 1) == Game.Dice.SKULL) {
                                             serverThread.sendString("You can't place a skull in your treasure chest");
                                             throw new Exception();
@@ -194,7 +193,7 @@ public class GameServer{
 
                                 }
                                 isValidResponse = true;
-                                game.setInTreasureChest(treasureChestDice);
+                                game.setDiceInTreasureChest(treasureChestDice);
                             }
 
                             catch (Exception e) {
@@ -203,14 +202,14 @@ public class GameServer{
                         }
                     }
                     else{
-                        if(!game.getInTreasureChest().isEmpty()){
+                        if(!game.getDiceInTreasureChest().isEmpty()){
                             isValidResponse = false;
                             while(!isValidResponse){
                                 msgFromClient = getValidYesNoAnswer(serverThread,"Would you like to remove from treasure chest?");
                                 if(msgFromClient.equalsIgnoreCase("Yes")){
                                     msgToClient = "What dice would you like to remove from the treasure chest? Separate your choices with commas e.g 1,2,3\n Your choices are: \n";
-                                    for(int i = 0; i < game.getInTreasureChest().size(); i++){
-                                        msgToClient += "Dice " + (game.getInTreasureChest().get(i) + 1) + "\n";
+                                    for(int i = 0; i < game.getDiceInTreasureChest().size(); i++){
+                                        msgToClient += "Dice " + (game.getDiceInTreasureChest().get(i) + 1) + "\n";
                                     }
                                     serverThread.sendString(msgToClient);
                                     msgFromClient = serverThread.receiveString();
@@ -219,7 +218,7 @@ public class GameServer{
                                         for(int i = 0; i < diceStringList.size(); i++){
                                             int diceNum = Integer.parseInt(diceStringList.get(i));
                                             //If the value cannot be removed from the arrayList
-                                            if(!game.getInTreasureChest().remove(Integer.valueOf(diceNum-1))){
+                                            if(!game.getDiceInTreasureChest().remove(Integer.valueOf(diceNum-1))){
                                                 throw new Exception();
                                             }
                                         }
@@ -337,7 +336,6 @@ public class GameServer{
 
                 game.setDiceToReroll(diceToReroll);
                 game.rerollDice();
-                game.countDice();
                 return diceToReroll;
             } catch (Exception e) {
                 //If a reason for the input failing hasn't been given
