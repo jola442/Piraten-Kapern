@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -513,6 +514,68 @@ class GameUnitTest {
         //2 SKULLS DICE + CAPTAIN CARD
         game.setFortuneCard(Game.Card.CAPTAIN);
         assertEquals(-(Config.SKULL_DEDUCTION*2)*Config.CAPTAIN_MULTIPLIER, game.getSkullIslandDeduction());
+    }
+
+    @Test
+    void testWinners(){
+        Player player1 = new Player("Player 1");
+        Player player2 = new Player("Player 2");
+        Player player3 = new Player("Player 3");
+        Player[] players = {player1, player2, player3};
+        ArrayList <String> winners = new ArrayList<>();
+
+        //Only player 1 wins
+        player1.setScore(Config.WIN_THRESHOLD);
+        winners.add(player1.getName());
+        assertEquals(winners, game.getWinners(players));
+
+        //Only player 2 wins
+        winners.clear();
+        player1.setScore(Config.WIN_THRESHOLD-1);
+        player2.setScore(Config.WIN_THRESHOLD);
+        player3.setScore(Config.WIN_THRESHOLD-1);
+        winners.add(player2.getName());
+        assertEquals(winners, game.getWinners(players));
+
+        //Only player 3 wins
+        winners.clear();
+        player1.setScore(Config.WIN_THRESHOLD-1);
+        player2.setScore(Config.WIN_THRESHOLD-1);
+        player3.setScore(Config.WIN_THRESHOLD);
+        winners.add(player3.getName());
+        assertEquals(winners, game.getWinners(players));
+
+        //Player 1 and Player 2 win
+        winners.clear();
+        player1.setScore(Config.WIN_THRESHOLD);
+        player2.setScore(Config.WIN_THRESHOLD+1);
+        player3.setScore(Config.WIN_THRESHOLD-1);
+        winners.addAll(Arrays.asList(player1.getName(), player2.getName()));
+        assertEquals(winners, game.getWinners(players));
+
+        //Player 1 and Player 3 win
+        winners.clear();
+        player1.setScore(Config.WIN_THRESHOLD);
+        player2.setScore(Config.WIN_THRESHOLD-1);
+        player3.setScore(Config.WIN_THRESHOLD+1);
+        winners.addAll(Arrays.asList(player1.getName(), player3.getName()));
+        assertEquals(winners, game.getWinners(players));
+
+        //Player 2 and Player 3 win
+        winners.clear();
+        player1.setScore(Config.WIN_THRESHOLD-1);
+        player2.setScore(Config.WIN_THRESHOLD);
+        player3.setScore(Config.WIN_THRESHOLD+1);
+        winners.addAll(Arrays.asList(player2.getName(), player3.getName()));
+        assertEquals(winners, game.getWinners(players));
+
+        //Player 1, Player 2 and Player 3 win
+        winners.clear();
+        player1.setScore(Config.WIN_THRESHOLD);
+        player2.setScore(Config.WIN_THRESHOLD);
+        player3.setScore(Config.WIN_THRESHOLD+1);
+        winners.addAll(Arrays.asList(player1.getName(), player2.getName(), player3.getName()));
+        assertEquals(winners, game.getWinners(players));
     }
 
 }
