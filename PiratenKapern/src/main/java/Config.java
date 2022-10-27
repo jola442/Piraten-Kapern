@@ -30,4 +30,5 @@ public class Config {
     public static final int SKULL_DEDUCTION = 100;
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final int WIN_THRESHOLD = 3000;
 }

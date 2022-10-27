@@ -18,6 +18,8 @@ public class Game{
     private EnumMap<Card, Integer> fortuneCards;
 
     private Card fortuneCard;
+
+
     public enum Card{
         CHEST, SORCERESS, CAPTAIN, MONKEY_AND_PARROT, DIAMOND, COIN, TWO_SKULLS, ONE_SKULL, TWO_SWORDS, THREE_SWORDS, FOUR_SWORDS;
     }
@@ -576,6 +578,22 @@ public class Game{
         }
 
         return deduction;
+    }
+
+    public ArrayList<String> getWinners(Player[] players) {
+        ArrayList <String> winners = new ArrayList<>();
+        for(int i = 0; i < players.length; i++){
+            if(players[i].getScore() >= Config.WIN_THRESHOLD){
+                winners.add(players[i].getName());
+            }
+        }
+        if(winners.isEmpty()){
+            return null;
+        }
+
+        else{
+            return winners;
+        }
     }
 
 
