@@ -284,10 +284,18 @@ public class GameServer{
 //
             try {
                 isValidResponse = true;
+                int numSkullDiceToReroll = 0;
                 for (int i = 0; i < diceStringList.size(); i++) {
                     int diceNum = Integer.parseInt(diceStringList.get(i));
                     if (diceNum >= 1 && diceNum <= 8) {
                         if (game.getDice().get(diceNum - 1) == Game.Dice.SKULL) {
+                            numSkullDiceToReroll++;
+                            if(numSkullDiceToReroll > 1){
+                                playerServer.sendString("You can't reroll more than 1 skull even if you have a sorceress card");
+                                usedSorceress = false;
+                                isValidResponse = false;
+                                throw new Exception();
+                            }
                             if (game.getFortuneCard() == Game.Card.SORCERESS && !usedSorceress) {
                                 usedSorceress = true;
                                 diceToReroll.add(diceNum-1);
@@ -372,6 +380,7 @@ public class GameServer{
             }
 
             if(!canReroll){
+                serverThread.sendDice();
                 break;
             }
 
@@ -387,6 +396,7 @@ public class GameServer{
                             serverThread.sendDice();
                         }
                     }
+
 
                 }
 

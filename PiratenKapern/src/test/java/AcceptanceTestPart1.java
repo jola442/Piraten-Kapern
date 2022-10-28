@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AcceptanceTestPart1 {
+public class AcceptanceTestPart1 {
     Game game = new Game();
 
     @Test

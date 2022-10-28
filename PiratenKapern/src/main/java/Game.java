@@ -581,19 +581,24 @@ public class Game{
     }
 
     public ArrayList<String> getWinners(Player[] players) {
-        ArrayList <String> winners = new ArrayList<>();
+        int max = 0;
         for(int i = 0; i < players.length; i++){
-            if(players[i].getScore() >= Config.WIN_THRESHOLD){
-                winners.add(players[i].getName());
+            if(players[i].getScore() > max){
+                max = players[i].getScore();
             }
         }
-        if(winners.isEmpty()){
+
+        if(max < Config.WIN_THRESHOLD){
             return null;
         }
 
-        else{
-            return winners;
+        ArrayList <String> winners = new ArrayList<>();
+        for(int i = 0; i < players.length; i++){
+            if(players[i].getScore() == max){
+                winners.add(players[i].getName());
+            }
         }
+        return winners;
     }
 
 
