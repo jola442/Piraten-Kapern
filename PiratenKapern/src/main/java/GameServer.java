@@ -12,8 +12,8 @@ public class GameServer{
      *
      */
     private static final long serialVersionUID = 1L;
-    private Server[] serverThreads = new Server[Config.NUM_OF_PLAYERS];
-    private Player[] players = new Player[Config.NUM_OF_PLAYERS];
+    protected Server[] serverThreads = new Server[Config.NUM_OF_PLAYERS];
+    protected Player[] players = new Player[Config.NUM_OF_PLAYERS];
     private Game game;
     private int numPlayers;
     private boolean usedSorceress;
@@ -44,6 +44,11 @@ public class GameServer{
         }
 
     }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
 
     /*
      * -----------Networking stuff ----------
@@ -92,10 +97,10 @@ public class GameServer{
         usedSorceress = false;
         game.getDiceInTreasureChest().clear();
 
-        serverThread.sendScoreBoard();
         game.drawFortuneCard();
         //Player's initial roll
         game.rollDice();
+        serverThread.sendScoreBoard();
 
 
         if(game.getNumSkullDice() > 3 ||
@@ -552,7 +557,9 @@ public class GameServer{
         private Socket socket;
         private ObjectInputStream inputFromClient;
         private ObjectOutputStream outputToClient;
-        private int playerId;
+        protected int playerId;
+
+        public Server(){}
 
         public Server(Socket s, int playerId) {
             socket = s;
