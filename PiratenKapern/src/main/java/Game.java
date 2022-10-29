@@ -504,28 +504,53 @@ public class Game{
                 numScoringDice += numParrotDice;
             }
 
-            //Checking for X of a kind with monkey and parrot dice
-            if(numMonkeyDice == 3 || numParrotDice == 3){
+            //Checking for X of a kind with monkey dice
+            if(numMonkeyDice == 3){
                 score += Config.THREE_OF_A_KIND_SCORE;
             }
 
-            else if(numMonkeyDice == 4 || numParrotDice == 4){
+            else if(numMonkeyDice == 4){
                 score += Config.FOUR_OF_A_KIND_SCORE;
             }
 
-            else if(numMonkeyDice == 5 || numParrotDice == 5){
+            else if(numMonkeyDice == 5){
                 score += Config.FIVE_OF_A_KIND_SCORE;
             }
 
-            else if(numMonkeyDice == 6 || numParrotDice == 6){
+            else if(numMonkeyDice == 6){
                 score += Config.SIX_OF_A_KIND_SCORE;
             }
 
-            else if(numMonkeyDice == 7 || numParrotDice == 7){
+            else if(numMonkeyDice == 7){
                 score += Config.SEVEN_OF_A_KIND_SCORE;
             }
 
-            else if(numMonkeyDice == 8 || numParrotDice == 8){
+            else if(numMonkeyDice == 8){
+                score += Config.EIGHT_OF_A_KIND_SCORE;
+            }
+
+            //Checking for X of a kind with parrot dice
+            if(numParrotDice == 3){
+                score += Config.THREE_OF_A_KIND_SCORE;
+            }
+
+            else if(numParrotDice == 4){
+                score += Config.FOUR_OF_A_KIND_SCORE;
+            }
+
+            else if(numParrotDice == 5){
+                score += Config.FIVE_OF_A_KIND_SCORE;
+            }
+
+            else if(numParrotDice == 6){
+                score += Config.SIX_OF_A_KIND_SCORE;
+            }
+
+            else if(numParrotDice == 7){
+                score += Config.SEVEN_OF_A_KIND_SCORE;
+            }
+
+            else if(numParrotDice == 8){
                 score += Config.EIGHT_OF_A_KIND_SCORE;
             }
         }

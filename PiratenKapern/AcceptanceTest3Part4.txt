@@ -1,0 +1,109 @@
+Player 1 has joined!
+Player 2 has joined!
+Player 3 has joined!
+--------------------------------------------
+      Round 0: Player 1's Turn
+--------------------------------------------
+Player 1's score: 0
+Player 2's score: 0
+Player 3's score: 0
+--------------------------------------------
+
+
+Rolling dice....
+Dice 1: SWORD
+Dice 2: SWORD
+Dice 3: SWORD
+Dice 4: SWORD
+Dice 5: SWORD
+Dice 6: SWORD
+Dice 7: SKULL
+Dice 8: SKULL
+
+Fortune Card: COIN
+Would you like to re-roll? Yes or No
+No
+
+Your turn has ended.
+Your score for this round is 1100
+Your total score is 1100
+
+--------------------------------------------
+      Round 0: Player 2's Turn
+--------------------------------------------
+Player 1's score: 1100
+Player 2's score: 0
+Player 3's score: 0
+--------------------------------------------
+
+
+Rolling dice....
+Dice 1: SKULL
+Dice 2: SKULL
+Dice 3: SKULL
+Dice 4: SKULL
+Dice 5: SKULL
+Dice 6: SKULL
+Dice 7: SKULL
+Dice 8: COIN
+
+Fortune Card SORCERESS
+-------------------------------------
+You are now on the Island of Skulls
+-------------------------------------
+Would you like to reroll? Yes or No
+Yes
+
+What dice would you like to reroll? Separate your choices with commas e.g 1,2,3
+7
+
+Rolling dice....
+Dice 1: SKULL
+Dice 2: SKULL
+Dice 3: SKULL
+Dice 4: SKULL
+Dice 5: SKULL
+Dice 6: SKULL
+Dice 7: PARROT
+Dice 8: COIN
+
+Would you like to reroll? Yes or No
+Yes
+
+What dice would you like to reroll? Separate your choices with commas e.g 1,2,3
+7,8
+
+Rolling dice....
+Dice 1: SKULL
+Dice 2: SKULL
+Dice 3: SKULL
+Dice 4: SKULL
+Dice 5: SKULL
+Dice 6: SKULL
+Dice 7: SKULL
+Dice 8: SKULL
+
+Rolling dice....
+Dice 1: SKULL
+Dice 2: SKULL
+Dice 3: SKULL
+Dice 4: SKULL
+Dice 5: SKULL
+Dice 6: SKULL
+Dice 7: SKULL
+Dice 8: SKULL
+
+What player 1 sees:
+Player 2 entered skull island and reduced your score by 800
+Your score is now 300
+
+What player 2 sees:
+You have inflicted a deduction of 800 on all other players
+What player 3 sees:
+Player 2 entered skull island and reduced your score by 800
+Your score is now 0
+
+Your turn has ended.
+Your score for this round is 0
+Your total score is 0
+

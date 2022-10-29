@@ -11,6 +11,28 @@ Player 3's score: 0
 
 
 Rolling dice....
+Dice 1: SKULL
+Dice 2: SKULL
+Dice 3: SKULL
+Dice 4: MONKEY
+Dice 5: MONKEY
+Dice 6: MONKEY
+Dice 7: MONKEY
+Dice 8: MONKEY
+
+Fortune Card: CAPTAIN
+You are dead. Your score for this turn is 0 and your turn is over
+
+--------------------------------------------
+      Round 1: Player 2's Turn
+--------------------------------------------
+Player 1's score: 0
+Player 2's score: 0
+Player 3's score: 0
+--------------------------------------------
+
+
+Rolling dice....
 Dice 1: SWORD
 Dice 2: SWORD
 Dice 3: SWORD
@@ -29,10 +51,32 @@ Your score for this round is 4000
 Your total score is 4000
 
 --------------------------------------------
-      Round 1: Player 2's Turn
+      Round 1: Player 3's Turn
 --------------------------------------------
-Player 1's score: 4000
-Player 2's score: 0
+Player 1's score: 0
+Player 2's score: 4000
+Player 3's score: 0
+--------------------------------------------
+
+
+Rolling dice....
+Dice 1: SKULL
+Dice 2: SWORD
+Dice 3: SWORD
+Dice 4: SWORD
+Dice 5: SWORD
+Dice 6: SWORD
+Dice 7: SWORD
+Dice 8: SWORD
+
+Fortune Card: TWO_SKULLS
+You are dead. Your score for this turn is 0 and your turn is over
+
+--------------------------------------------
+      Round 1: Player 1's Turn
+--------------------------------------------
+Player 1's score: 0
+Player 2's score: 4000
 Player 3's score: 0
 --------------------------------------------
 
@@ -45,37 +89,15 @@ Dice 4: SWORD
 Dice 5: SWORD
 Dice 6: SWORD
 Dice 7: SWORD
-Dice 8: SKULL
+Dice 8: SWORD
 
-Fortune Card: ONE_SKULL
+Fortune Card: CAPTAIN
 Would you like to re-roll? Yes or No
 No
 
 Your turn has ended.
-Your score for this round is 2000
-Your total score is 2000
-
---------------------------------------------
-      Round 1: Player 3's Turn
---------------------------------------------
-Player 1's score: 4000
-Player 2's score: 2000
-Player 3's score: 0
---------------------------------------------
-
-
-Rolling dice....
-Dice 1: SKULL
-Dice 2: SKULL
-Dice 3: SKULL
-Dice 4: MONKEY
-Dice 5: MONKEY
-Dice 6: MONKEY
-Dice 7: MONKEY
-Dice 8: MONKEY
-
-Fortune Card: COIN
-You are dead. Your score for this turn is 0 and your turn is over
+Your score for this round is 9000
+Your total score is 9000
 
 What player 1sees: 
 You have won

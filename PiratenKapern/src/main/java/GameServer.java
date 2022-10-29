@@ -14,11 +14,11 @@ public class GameServer{
     private static final long serialVersionUID = 1L;
     protected Server[] serverThreads = new Server[Config.NUM_OF_PLAYERS];
     protected Player[] players = new Player[Config.NUM_OF_PLAYERS];
-    private Game game;
+    protected Game game;
     private int numPlayers;
-    private boolean usedSorceress;
+    protected boolean usedSorceress;
     private ServerSocket serverSocket;
-    private int roundNum;
+    protected int roundNum;
 
     public static void main(String args[]) throws Exception {
         GameServer gameServer = new GameServer();
@@ -111,7 +111,7 @@ public class GameServer{
             playSkullIslandRound(serverThread, player);
             msgToClient = "Your turn has ended.\n" +
                     "Your score for this round is 0"
-                    +"\nYour total score is " + player.getScore();
+                    +"\nYour total score is " + player.getScore() + "\n";
             serverThread.sendString(msgToClient);
             return;
         }
@@ -143,20 +143,20 @@ public class GameServer{
                         }
 
                         else{
-                            serverThread.sendString("You are dead. Your score for this turn is 0 and your turn is over");
+                            serverThread.sendString("You are dead. Your score for this turn is 0 and your turn is over\n");
                             return;
                         }
                     }
 
                     else{
-                        serverThread.sendString("You are dead. Your score for this turn is 0 and your turn is over");
+                        serverThread.sendString("You are dead. Your score for this turn is 0 and your turn is over\n");
                         return;
                     }
                 }
 
                 //If you have more than 3 skulls
                 else{
-                    serverThread.sendString("You are dead. Your score for this turn is 0 and your turn is over");
+                    serverThread.sendString("You are dead. Your score for this turn is 0 and your turn is over\n");
                     return;
                 }
 
@@ -250,7 +250,7 @@ public class GameServer{
 
                     msgToClient = "Your turn has ended.\n" +
                             "Your score for this round is " + roundScore
-                            +"\nYour total score is " + player.getScore();
+                            +"\nYour total score is " + player.getScore() + "\n";
                     serverThread.sendString(msgToClient);
                     break;
                 }
@@ -420,9 +420,9 @@ public class GameServer{
             }
 
             else{
-                serverThreads[i].sendString(player.getName() + " entered skull island and reduced your score by " + (-1*deduction));
                 updateTotalScore(players[i],deduction);
-                serverThreads[i].sendString("Your score is now " + players[i].getScore());
+                serverThreads[i].sendString(player.getName() + " entered skull island and reduced your score by " + (-1*deduction) + "\nYour score is now " + players[i].getScore() + "\n");
+
             }
         }
 
@@ -500,51 +500,51 @@ public class GameServer{
 
         if(winners.size() == 1){
             if(winners.get(0).equalsIgnoreCase(player1.getName())){
-                player1Server.sendString(Config.ANSI_GREEN + "You have won" + Config.ANSI_RESET);
-                player2Server.sendString(Config.ANSI_RED + player1.getName() + " has won" + Config.ANSI_RESET);
-                player3Server.sendString(Config.ANSI_RED + player1.getName() + " has won" + Config.ANSI_RESET);
+                player1Server.sendString("You have won");
+                player2Server.sendString(player1.getName() + " has won");
+                player3Server.sendString(player1.getName() + " has won");
             }
 
             else if(winners.get(0).equalsIgnoreCase(player2.getName())){
-                player2Server.sendString(Config.ANSI_GREEN + "You have won" + Config.ANSI_RESET);
-                player1Server.sendString(Config.ANSI_RED + player2.getName() + " has won" + Config.ANSI_RESET);
-                player3Server.sendString(Config.ANSI_RED + player2.getName() + " has won" + Config.ANSI_RESET);
+                player2Server.sendString("You have won" );
+                player1Server.sendString(player2.getName() + " has won");
+                player3Server.sendString(player2.getName() + " has won");
             }
 
             else{
-                player3Server.sendString(Config.ANSI_GREEN + "You have won" + Config.ANSI_RESET);
-                player2Server.sendString(Config.ANSI_RED + player3.getName() + " has won" + Config.ANSI_RESET);
-                player1Server.sendString(Config.ANSI_RED + player3.getName() + " has won" + Config.ANSI_RESET);
+                player3Server.sendString("You have won");
+                player2Server.sendString(player3.getName() + " has won" );
+                player1Server.sendString(player3.getName() + " has won" );
             }
         }
 
         else if(winners.size() == 2){
             //If player 1 and player 2 win
             if(winners.get(0).equalsIgnoreCase(player1.getName()) && winners.get(1).equalsIgnoreCase(player2.getName())){
-                player1Server.sendString(Config.ANSI_GREEN + "You tied for the win with " + player2.getName() + Config.ANSI_RESET);
-                player2Server.sendString(Config.ANSI_GREEN + "You tied for the win with " + player1.getName() + Config.ANSI_RESET);
-                player3Server.sendString(Config.ANSI_RED + player1.getName() + " and " + player2.getName() + " tied for the win" + Config.ANSI_RESET);
+                player1Server.sendString("You tied for the win with " + player2.getName() );
+                player2Server.sendString("You tied for the win with " + player1.getName() );
+                player3Server.sendString(player1.getName() + " and " + player2.getName() + " tied for the win" );
             }
 
             //If player 1 and player 3 win
             else if(winners.get(0).equalsIgnoreCase(player1.getName()) && winners.get(1).equalsIgnoreCase(player3.getName())){
-                player1Server.sendString(Config.ANSI_GREEN + "You tied for the win with " + player3.getName() + Config.ANSI_RESET);
-                player3Server.sendString(Config.ANSI_GREEN + "You tied for the win with " + player1.getName() + Config.ANSI_RESET);
-                player2Server.sendString(Config.ANSI_RED + player1.getName() + " and " + player3.getName() + " tied for the win" + Config.ANSI_RESET);
+                player1Server.sendString( "You tied for the win with " + player3.getName() );
+                player3Server.sendString( "You tied for the win with " + player1.getName() );
+                player2Server.sendString( player1.getName() + " and " + player3.getName() + " tied for the win" );
             }
 
             //If player 2 and player 3 win
             else{
-                player2Server.sendString(Config.ANSI_GREEN + "You tied for the win with " + player3.getName() + Config.ANSI_RESET);
-                player3Server.sendString(Config.ANSI_GREEN + "You tied for the win with " + player2.getName() + Config.ANSI_RESET);
-                player1Server.sendString(Config.ANSI_RED + player2.getName() + " and " + player3.getName() + " tied for the win" + Config.ANSI_RESET);
+                player2Server.sendString( "You tied for the win with " + player3.getName() );
+                player3Server.sendString( "You tied for the win with " + player2.getName() );
+                player1Server.sendString( player2.getName() + " and " + player3.getName() + " tied for the win" );
             }
         }
 
         else{
-            player1Server.sendString(Config.ANSI_GREEN + "Three way tie for the win" + Config.ANSI_RESET);
-            player2Server.sendString(Config.ANSI_GREEN + "Three way tie for the win" + Config.ANSI_RESET);
-            player3Server.sendString(Config.ANSI_GREEN + "Three way tie for the win" + Config.ANSI_RESET);
+            player1Server.sendString( "Three way tie for the win" );
+            player2Server.sendString( "Three way tie for the win" );
+            player3Server.sendString( "Three way tie for the win" );
         }
 
     }

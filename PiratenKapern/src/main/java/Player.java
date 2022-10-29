@@ -66,6 +66,16 @@ public class Player{
                 System.out.println(Config.ANSI_RED + msgFromServer + Config.ANSI_RESET);
             }
 
+            //If the current player wins
+            else if(msgFromServer.contains("You have won")){
+                System.out.println(Config.ANSI_GREEN + msgFromServer + Config.ANSI_RESET);
+            }
+
+            //If another player wins
+            else if(msgFromServer.contains("has won")){
+                System.out.println(Config.ANSI_RED + msgFromServer + Config.ANSI_RESET);
+            }
+
             else if(msgFromServer.contains("?")){
                 System.out.println(msgFromServer);
                 msgToServer = in.nextLine();

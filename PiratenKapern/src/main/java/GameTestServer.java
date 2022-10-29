@@ -255,6 +255,11 @@ public class GameTestServer extends GameServer{
                     String newMsg = "What player " + playerId + " sees:\n" + msg;
                     msg = newMsg;
                 }
+
+                else if(msg.contains("won")){
+                    String newMsg = "What player " + playerId + " sees: \n" + msg;
+                    msg = newMsg;
+                }
                 fileWriter.write(msg+"\n");
                 fileWriter.flush();
             }

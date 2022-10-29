@@ -48,7 +48,8 @@ public class AcceptanceTestPart3 {
     public void testRow147To150(){
         GameTestServer testServer = new GameTestServer(4);
         testServer.acceptConnections();
-        testServer.gameLoop();
+        testServer.playRound(testServer.serverThreads[0], testServer.players[0]);
+        testServer.playRound(testServer.serverThreads[1], testServer.players[1]);
         assertEquals(300,testServer.getPlayers()[0].getScore());
         assertEquals(0, testServer.getPlayers()[1].getScore());
         assertEquals(0, testServer.getPlayers()[2].getScore());
