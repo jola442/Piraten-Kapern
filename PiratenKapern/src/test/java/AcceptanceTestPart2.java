@@ -131,7 +131,7 @@ public class AcceptanceTestPart2 {
     }
 
     @Test
-    public void testRow87To90(){
+    public void testRow90(){
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.CHEST);
 
@@ -164,7 +164,7 @@ public class AcceptanceTestPart2 {
     }
 
     @Test
-    public void testRow92To94(){
+    public void testRow94(){
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.CHEST);
 
@@ -234,7 +234,7 @@ public class AcceptanceTestPart2 {
     }
 
     @Test
-    public void testRow100To102(){
+    public void testRow102(){
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.TWO_SWORDS);
 
@@ -290,7 +290,7 @@ public class AcceptanceTestPart2 {
     }
 
     @Test
-    public void testRow108To109(){
+    public void testRow109(){
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.TWO_SKULLS);
 
@@ -427,7 +427,7 @@ public class AcceptanceTestPart2 {
     }
 
     @Test
-    public void testRow118(){
+    public void testRow119(){
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.TWO_SWORDS);
 
@@ -458,7 +458,7 @@ public class AcceptanceTestPart2 {
     }
 
     @Test
-    public void testRow121And122(){
+    public void testRow122(){
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.THREE_SWORDS);
 
@@ -492,7 +492,7 @@ public class AcceptanceTestPart2 {
     }
 
     @Test
-    public void testRow124To126(){
+    public void testRow126(){
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.FOUR_SWORDS);
 

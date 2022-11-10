@@ -63,7 +63,7 @@ public class AcceptanceTestPart1 {
     }
 
     @Test
-    public void testRow48And49() {
+    public void testRow49() {
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.COIN);
 
@@ -91,7 +91,7 @@ public class AcceptanceTestPart1 {
 
 
     @Test
-    public void testRow50And51() {
+    public void testRow51() {
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.COIN);
 
@@ -234,7 +234,7 @@ public class AcceptanceTestPart1 {
     }
 
     @Test
-    public void testRow60And61() {
+    public void testRow61() {
         game.drawFortuneCard();
         game.setFortuneCard(Game.Card.COIN);
 

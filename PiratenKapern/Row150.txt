@@ -10,6 +10,8 @@ Player 3's score: 0
 --------------------------------------------
 
 
+Your turn has started
+
 Rolling dice....
 Dice 1: SWORD
 Dice 2: SWORD
@@ -36,6 +38,8 @@ Player 2's score: 0
 Player 3's score: 0
 --------------------------------------------
 
+
+Your turn has started
 
 Rolling dice....
 Dice 1: SKULL

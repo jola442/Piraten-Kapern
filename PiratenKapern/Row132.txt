@@ -10,6 +10,8 @@ Player 3's score: 0
 --------------------------------------------
 
 
+Your turn has started
+
 Rolling dice....
 Dice 1: SWORD
 Dice 2: SWORD
@@ -36,6 +38,8 @@ Player 2's score: 0
 Player 3's score: 0
 --------------------------------------------
 
+
+Your turn has started
 
 Rolling dice....
 Dice 1: SWORD
@@ -64,6 +68,8 @@ Player 3's score: 0
 --------------------------------------------
 
 
+Your turn has started
+
 Rolling dice....
 Dice 1: SKULL
 Dice 2: SKULL
@@ -77,9 +83,9 @@ Dice 8: MONKEY
 Fortune Card: COIN
 You are dead. Your score for this turn is 0 and your turn is over
 
-What player 1sees: 
+What player 1 sees: 
 You have won
-What player 2sees: 
+What player 2 sees: 
 Player 1 has won
-What player 3sees: 
+What player 3 sees: 
 Player 1 has won

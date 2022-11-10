@@ -10,12 +10,28 @@ public class GameTestServer extends GameServer{
     public GameTestServer(int testNum){
         testNumber = testNum;
         try{
-            String filePath = "AcceptanceTest3Part" + testNumber + ".txt";
+            String fileName;
+            if(testNumber == 1){
+                fileName = "Row132.txt";
+            }
+
+            else if(testNumber == 2){
+                fileName = "Row140.txt";
+            }
+
+            else if(testNumber == 3){
+                fileName = "Row145.txt";
+            }
+
+            else{
+                fileName = "Row150.txt";
+            }
+
             //overwrite the file if it exists
-            fileWriter = new FileWriter(filePath, false);
+            fileWriter = new FileWriter(fileName, false);
 
             //set the file to append mode
-            fileWriter = new FileWriter(filePath, true);
+            fileWriter = new FileWriter(fileName, true);
         }
 
         catch (IOException e){

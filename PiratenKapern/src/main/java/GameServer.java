@@ -101,6 +101,7 @@ public class GameServer{
         //Player's initial roll
         game.rollDice();
         serverThread.sendScoreBoard();
+        serverThread.sendString("Your turn has started\n");
 
 
         if(game.getNumSkullDice() > 3 ||

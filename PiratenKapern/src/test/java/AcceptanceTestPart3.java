@@ -9,7 +9,7 @@ public class AcceptanceTestPart3 {
     Game game = new Game();
 
     @Test
-    public void testRow130To133(){
+    public void testRow132(){
         GameTestServer testServer = new GameTestServer(1);
         testServer.acceptConnections();
         testServer.gameLoop();
@@ -21,7 +21,7 @@ public class AcceptanceTestPart3 {
     }
 
     @Test
-    public void testRow134To140(){
+    public void testRow140(){
         GameTestServer testServer = new GameTestServer(2);
         testServer.acceptConnections();
         testServer.gameLoop();
@@ -33,7 +33,7 @@ public class AcceptanceTestPart3 {
     }
 
     @Test
-    public void testRow142To145(){
+    public void testRow145(){
         GameTestServer testServer = new GameTestServer(3);
         testServer.acceptConnections();
         testServer.gameLoop();
@@ -45,7 +45,7 @@ public class AcceptanceTestPart3 {
     }
 
     @Test
-    public void testRow147To150(){
+    public void testRow150(){
         GameTestServer testServer = new GameTestServer(4);
         testServer.acceptConnections();
         testServer.playRound(testServer.serverThreads[0], testServer.players[0]);
