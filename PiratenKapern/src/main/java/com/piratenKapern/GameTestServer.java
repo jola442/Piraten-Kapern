@@ -1,7 +1,10 @@
+package com.piratenKapern;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.piratenKapern.Game.Dice;
+import com.piratenKapern.Game.Card;
 
 public class GameTestServer extends GameServer{
     private int testNumber;
@@ -90,12 +93,12 @@ public class GameTestServer extends GameServer{
         ArrayList<Integer> returnVal = super.getValidDiceReroll(playerServer);
         if(playerServer.playerId == 2){
             if(returnVal.containsAll(Arrays.asList(6,7))){
-                game.getDice().set(6, Game.Dice.SKULL);
-                game.getDice().set(7, Game.Dice.SKULL);
+                game.getDice().set(6, Dice.SKULL);
+                game.getDice().set(7, Dice.SKULL);
             }
 
             else{
-                game.getDice().set(6, Game.Dice.PARROT);
+                game.getDice().set(6, Dice.PARROT);
             }
             game.countDice();
         }
@@ -115,58 +118,58 @@ public class GameTestServer extends GameServer{
             //player3 has a playerId of 3
             if(testNumber == 1){
                 if(playerId == 1){
-                    dice = new ArrayList<>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL));
-                    game.setFortuneCard(Game.Card.CAPTAIN);
+                    dice = new ArrayList<>(Arrays.asList(Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SKULL));
+                    game.setFortuneCard(Card.CAPTAIN);
                 }
 
                 else if(playerId == 2){
-                    dice = new ArrayList<>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL));
-                    game.setFortuneCard(Game.Card.ONE_SKULL);
+                    dice = new ArrayList<>(Arrays.asList(Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SKULL));
+                    game.setFortuneCard(Card.ONE_SKULL);
                 }
 
                 else{
-                    dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY));
-                    game.setFortuneCard(Game.Card.COIN);
+                    dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY));
+                    game.setFortuneCard(Card.COIN);
                 }
             }
 
             else if(testNumber == 2){
                 if(playerId == 1){
                     if(roundNum == 1){
-                        dice = new ArrayList<>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL));
-                        game.setFortuneCard(Game.Card.CAPTAIN);
+                        dice = new ArrayList<>(Arrays.asList(Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SKULL));
+                        game.setFortuneCard(Card.CAPTAIN);
                     }
 
                     else{
-                        dice = new ArrayList<>(Arrays.asList(Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.PARROT, Game.Dice.PARROT, Game.Dice.PARROT, Game.Dice.PARROT));
-                        game.setFortuneCard(Game.Card.COIN);
+                        dice = new ArrayList<>(Arrays.asList(Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.PARROT, Dice.PARROT, Dice.PARROT, Dice.PARROT));
+                        game.setFortuneCard(Card.COIN);
                     }
 
                 }
 
                 else if(playerId == 2){
                     if(roundNum == 1){
-                        dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY));
-                        game.setFortuneCard(Game.Card.COIN);
+                        dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY));
+                        game.setFortuneCard(Card.COIN);
                     }
 
                     else{
-                        dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY));
-                        game.setFortuneCard(Game.Card.CAPTAIN);
+                        dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY));
+                        game.setFortuneCard(Card.CAPTAIN);
                     }
 
                 }
 
                 else{
                     if(roundNum == 1){
-                        dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.PARROT, Game.Dice.PARROT));
+                        dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.PARROT, Dice.PARROT));
 
-                        game.setFortuneCard(Game.Card.CAPTAIN);
+                        game.setFortuneCard(Card.CAPTAIN);
                     }
 
                     else{
-                        dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY));
-                        game.setFortuneCard(Game.Card.ONE_SKULL);
+                        dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY));
+                        game.setFortuneCard(Card.ONE_SKULL);
                     }
 
                 }
@@ -177,37 +180,37 @@ public class GameTestServer extends GameServer{
                     if(roundNum == 1){
                         //If player 3 has played
                         if(players[1].getScore() == 4000){
-                            dice = new ArrayList<>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD));
+                            dice = new ArrayList<>(Arrays.asList(Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD));
                         }
                         else{
-                            dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY, Game.Dice.MONKEY));
+                            dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY, Dice.MONKEY));
                         }
 
                     }
 
-                    game.setFortuneCard(Game.Card.CAPTAIN);
+                    game.setFortuneCard(Card.CAPTAIN);
                 }
 
                 else if(playerId == 2){
-                    dice = new ArrayList<>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL));
-                    game.setFortuneCard(Game.Card.CAPTAIN);
+                    dice = new ArrayList<>(Arrays.asList(Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SKULL));
+                    game.setFortuneCard(Card.CAPTAIN);
                 }
 
                 else{
-                    dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD));
-                    game.setFortuneCard(Game.Card.TWO_SKULLS);
+                    dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD));
+                    game.setFortuneCard(Card.TWO_SKULLS);
                 }
             }
 
             else{
                 if(playerId == 1){
-                    dice = new ArrayList<>(Arrays.asList(Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SWORD, Game.Dice.SKULL, Game.Dice.SKULL));
-                    game.setFortuneCard(Game.Card.COIN);
+                    dice = new ArrayList<>(Arrays.asList(Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SWORD, Dice.SKULL, Dice.SKULL));
+                    game.setFortuneCard(Card.COIN);
                 }
 
                 else if(playerId == 2){
-                    dice = new ArrayList<>(Arrays.asList(Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.SKULL, Game.Dice.COIN));
-                    game.setFortuneCard(Game.Card.SORCERESS);
+                    dice = new ArrayList<>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.COIN));
+                    game.setFortuneCard(Card.SORCERESS);
                 }
 
             }

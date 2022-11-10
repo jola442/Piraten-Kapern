@@ -1,3 +1,5 @@
+package com.piratenKapern;
+
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;

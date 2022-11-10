@@ -1,3 +1,5 @@
+package com.piratenKapern;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -5,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.piratenKapern.Game.Dice;
+import com.piratenKapern.Game.Card;
 
 public class GameServer{
 
@@ -105,8 +109,8 @@ public class GameServer{
 
 
         if(game.getNumSkullDice() > 3 ||
-        (game.getFortuneCard() == Game.Card.ONE_SKULL && game.getNumSkullDice() > 2) ||
-        (game.getFortuneCard() == Game.Card.TWO_SKULLS && game.getNumSkullDice() > 1)) {
+        (game.getFortuneCard() == Card.ONE_SKULL && game.getNumSkullDice() > 2) ||
+        (game.getFortuneCard() == Card.TWO_SKULLS && game.getNumSkullDice() > 1)) {
             serverThread.sendDice();
             serverThread.sendString("Fortune Card " + game.getFortuneCard());
             playSkullIslandRound(serverThread, player);
@@ -125,19 +129,19 @@ public class GameServer{
             serverThread.sendString("Fortune Card: " + game.getFortuneCard());
 
             //If you have more 3 or more skulls
-            if (game.getNumSkullDice() >= 3 || game.getFortuneCard() == Game.Card.ONE_SKULL && game.getNumSkullDice() >= 2 || game.getFortuneCard() == Game.Card.TWO_SKULLS && game.getNumSkullDice() >= 1) {
+            if (game.getNumSkullDice() >= 3 || game.getFortuneCard() == Card.ONE_SKULL && game.getNumSkullDice() >= 2 || game.getFortuneCard() == Card.TWO_SKULLS && game.getNumSkullDice() >= 1) {
 
                 //If you have exactly 3 skulls
-                if(game.getNumSkullDice() == 3 || game.getFortuneCard() == Game.Card.ONE_SKULL && game.getNumSkullDice() == 2 || game.getFortuneCard() == Game.Card.TWO_SKULLS && game.getNumSkullDice() == 1){
+                if(game.getNumSkullDice() == 3 || game.getFortuneCard() == Card.ONE_SKULL && game.getNumSkullDice() == 2 || game.getFortuneCard() == Card.TWO_SKULLS && game.getNumSkullDice() == 1){
 
                     //If you have an unused sorceress card
-                    if(game.getFortuneCard() == Game.Card.SORCERESS && !usedSorceress){
+                    if(game.getFortuneCard() == Card.SORCERESS && !usedSorceress){
                         msgFromClient = getValidYesNoAnswer(serverThread, "Would you like to reroll a skull?");
 
                         //If you wish to use your sorceress card
                         if(msgFromClient.equalsIgnoreCase("Yes")){
                             usedSorceress = true;
-                            int skullIndex = game.getDice().indexOf(Game.Dice.SKULL);
+                            int skullIndex = game.getDice().indexOf(Dice.SKULL);
                             ArrayList<Integer> diceToReroll = new ArrayList<>(Arrays.asList(skullIndex));
                             game.setDiceToReroll(diceToReroll);
                             game.rerollDice();
@@ -166,7 +170,7 @@ public class GameServer{
 
             else{
                 //Ask if the player would like to place dice in the treasure chest
-                if (game.getFortuneCard() == Game.Card.CHEST) {
+                if (game.getFortuneCard() == Card.CHEST) {
                     msgFromClient = getValidYesNoAnswer(serverThread, "Would you like to place dice in the treasure chest?");
                     if(msgFromClient.equalsIgnoreCase("Yes")){
                         isValidResponse = false;
@@ -189,7 +193,7 @@ public class GameServer{
                                 for (int i = 0; i < diceStringList.size(); i++) {
                                     int diceNum = Integer.parseInt(diceStringList.get(i));
                                     if (diceNum >= 1 && diceNum <= 8 && !game.getDiceInTreasureChest().contains(diceNum-1)) {
-                                        if (game.getDice().get(diceNum - 1) == Game.Dice.SKULL) {
+                                        if (game.getDice().get(diceNum - 1) == Dice.SKULL) {
                                             serverThread.sendString("You can't place a skull in your treasure chest");
                                             throw new Exception();
                                         } else {
@@ -294,7 +298,7 @@ public class GameServer{
                 for (int i = 0; i < diceStringList.size(); i++) {
                     int diceNum = Integer.parseInt(diceStringList.get(i));
                     if (diceNum >= 1 && diceNum <= 8) {
-                        if (game.getDice().get(diceNum - 1) == Game.Dice.SKULL) {
+                        if (game.getDice().get(diceNum - 1) == Dice.SKULL) {
                             numSkullDiceToReroll++;
                             if(numSkullDiceToReroll > 1){
                                 playerServer.sendString("You can't reroll more than 1 skull even if you have a sorceress card");
@@ -302,7 +306,7 @@ public class GameServer{
                                 isValidResponse = false;
                                 throw new Exception();
                             }
-                            if (game.getFortuneCard() == Game.Card.SORCERESS && !usedSorceress) {
+                            if (game.getFortuneCard() == Card.SORCERESS && !usedSorceress) {
                                 usedSorceress = true;
                                 diceToReroll.add(diceNum-1);
                             } else {
@@ -332,10 +336,10 @@ public class GameServer{
                     if(!diceToReroll.isEmpty()) {
                         die = game.getDice().get(diceToReroll.get(0));
                         System.out.println(die);
-                        System.out.println(die == Game.Dice.SKULL);
+                        System.out.println(die == Dice.SKULL);
                         //Checking if the die is a skull and the fortune card is sorceress
                         //The sorceress card was used when adding the skull to the arrayList
-                        if (die == Game.Dice.SKULL && game.getFortuneCard() == Game.Card.SORCERESS) {
+                        if (die == Dice.SKULL && game.getFortuneCard() == Card.SORCERESS) {
                             isValidResponse = true;
                             System.out.println("set isvalid response to true");
                         }
@@ -381,7 +385,7 @@ public class GameServer{
         String msgFromClient = "";
         boolean canReroll = true;
         while(true){
-            if(game.getNumSkullDice() >= 7 && (game.getFortuneCard() != Game.Card.SORCERESS|| usedSorceress)){
+            if(game.getNumSkullDice() >= 7 && (game.getFortuneCard() != Card.SORCERESS|| usedSorceress)){
                 break;
             }
 
@@ -397,7 +401,7 @@ public class GameServer{
                 //If the dice can be rerolled under normal circumstances, check if the roll contains at least one skull
                 if(rerolledDice != null){
                     for(int i = 0; i < rerolledDice.size(); i++){
-                        if(game.getDice().get(i) == Game.Dice.SKULL){
+                        if(game.getDice().get(i) == Dice.SKULL){
                             canReroll = true;
                             serverThread.sendDice();
                         }

@@ -1,3 +1,5 @@
+package com.piratenKapern;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
