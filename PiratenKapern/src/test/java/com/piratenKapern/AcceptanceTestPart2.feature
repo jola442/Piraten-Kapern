@@ -60,7 +60,15 @@ Feature: Part 2 of the acceptance tests
       When the player draws a <fortune_card> and rolls <roll>
       Then the player scores <score> for this round
       Examples:
-        |row|fortune_card|score|roll                                                         |
-        |97 |COIN        |400  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, DIAMOND, PARROT |
-        |98 |CAPTAIN     |1800 |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, COIN, COIN      |
-        |99 |COIN        |1000  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, DIAMOND  |
+        |row|fortune_card     |score|roll                                                         |
+        |97 |COIN             |400  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, DIAMOND, PARROT |
+        |98 |CAPTAIN          |1800 |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, COIN, COIN      |
+        |99 |COIN             |1000 |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, DIAMOND  |
+        |103|MONKEY_AND_PARROT|1200 |MONKEY, MONKEY, PARROT, COIN, COIN, DIAMOND, DIAMOND, DIAMOND|
+    
+    Scenario: A player draws a Two Swords Sea Battle card and rolls dice twice for their turn
+      Given a player wishes to roll dice twice for their turn
+      When the player draws a TWO_SWORDS and rolls MONKEY, MONKEY, MONKEY, MONKEY, SWORD, PARROT, PARROT, COIN
+      And the player re-rolls dice numbers 6,7
+      And the player gets COIN, SWORD
+      Then the player scores 1200 for this round
