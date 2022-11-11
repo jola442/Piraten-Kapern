@@ -37,6 +37,19 @@ Feature: Part 1 of the acceptance tests
       |70 |COIN        |600  |SKULL, COIN, COIN, MONKEY, PARROT, SWORD, SWORD, SWORD      |6,7,8       |COIN, MONKEY, PARROT|
       |71 |DIAMOND     |500  |SKULL, COIN, COIN, MONKEY, PARROT, SWORD, SWORD, SWORD      |6,7,8       |COIN, MONKEY, PARROT|
 
+  Scenario Outline: A player scores their third dice roll
+    Given a player wishes to roll dice thrice for their turn
+    When the player draws a <fortune_card> and rolls <roll_1>
+    And the player wishes to re-roll dice numbers <dice_numbers>
+    And the player gets <roll_2>
+    And the player wishes to re-roll dice numbers <dice_numbers_2>
+    And the player gets <roll_3>
+    Then the player scores <score> for this round
+    Examples:
+      |row|fortune_card|score|roll_1                                                    |dice_numbers|roll_2              |dice_numbers_2|roll_3        |
+      |49 |COIN        |0    |SKULL, PARROT, PARROT, PARROT, PARROT, SWORD, SWORD, SWORD|6,7,8       |SKULL, MONKEY, MONKEY|7,8          |SKULL,MONKEY  |
+      |51 |COIN        |4800 |SKULL, PARROT, PARROT,SWORD, SWORD, SWORD, COIN, COIN     |2,3         |COIN, COIN           |4,5,6        |COIN,COIN,COIN|
+      |61 |COIN        |600  |SKULL, MONKEY, MONKEY, PARROT, PARROT, SWORD, SWORD, SWORD|2,3         |SKULL, SWORD         |4,5          |SWORD, MONKEY |
 
 
 
