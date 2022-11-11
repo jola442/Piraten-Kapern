@@ -100,7 +100,6 @@ public class AcceptanceTestDefs {
 
     @And("the player enters the Skulls Island")
     public void thePlayerEntersTheSkullsIsland() {
-
     }
 
     @And("the other players receive a deduction of {int}")
