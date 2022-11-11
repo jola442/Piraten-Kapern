@@ -36,7 +36,7 @@ public class AcceptanceTestDefs {
         String[] diceNumList = diceNumbers.split(",");
 
         for(int i = 0; i < diceNumList.length; ++i){
-            convertedDiceNums.add(Integer.valueOf(diceNumList[i]));
+            convertedDiceNums.add(Integer.valueOf(diceNumList[i])-1);
         }
 
         return convertedDiceNums;
@@ -61,8 +61,8 @@ public class AcceptanceTestDefs {
 
     }
 
-    @And("the player wishes to re-roll dice numbers {}")
-    public void thePlayerWishesToReRollDiceNumbers(String diceNumbers) {
+    @And("the player re-rolls dice numbers {}")
+    public void thePlayerReRollsDiceNumbers(String diceNumbers) {
         ArrayList<Integer> convertedDiceNums = convertToIntegerArray(diceNumbers);
         game.setDiceToReroll(convertedDiceNums);
         game.rerollDice();
@@ -85,7 +85,7 @@ public class AcceptanceTestDefs {
     public void thePlayerKeepsDiceNumbersInTheChest(String diceNumbers) {
         ArrayList<Integer> convertedDiceNums = convertToIntegerArray(diceNumbers);
         for(int i = 0; i < convertedDiceNums.size(); ++i){
-            int dieIndex = convertedDiceNums.get(i)-1;
+            int dieIndex = convertedDiceNums.get(i);
             game.getDiceInTreasureChest().add(dieIndex);
         }
     }

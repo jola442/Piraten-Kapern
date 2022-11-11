@@ -2,9 +2,9 @@ Feature: Part 2 of the acceptance tests
   Scenario Outline: A player draws a Sorceress fortune card
     Given a player wishes to roll dice thrice for their turn
     When the player draws a SORCERESS and rolls <roll_1>
-    And the player wishes to re-roll dice numbers <dice_numbers>
+    And the player re-rolls dice numbers <dice_numbers>
     And the player gets <roll_2>
-    And the player wishes to re-roll dice numbers <dice_numbers_2>
+    And the player re-rolls dice numbers <dice_numbers_2>
     And the player gets <roll_3>
     Then the player scores <score> for this round
 
@@ -28,30 +28,30 @@ Feature: Part 2 of the acceptance tests
   Scenario: A player draws a Monkey Business fortune card and rolls dice twice (Row 83)
     Given a player wishes to roll dice twice for their turn
     When the player draws a MONKEY_AND_PARROT and rolls MONKEY, MONKEY, SWORD, SWORD, PARROT, PARROT, COIN, COIN
-    And the player wishes to re-roll dice numbers 3,4
+    And the player re-rolls dice numbers 3,4
     And the player gets MONKEY, PARROT
     Then the player scores 1700 for this round
 
   Scenario: A player draws a Treasure Chest fortune card, rolls dice thrice, places and takes out dice from the chest
     Given a player wishes to roll dice thrice for their turn
-    When the player draws a CHEST and rolls Dice.PARROT, Dice.PARROT, Dice.PARROT, Dice.SWORD, Dice.SWORD, Dice.DIAMOND, Dice.DIAMOND, Dice.COIN
+    When the player draws a CHEST and rolls PARROT, PARROT, PARROT, SWORD, SWORD, DIAMOND, DIAMOND, COIN
     And the player keeps dice numbers 6,7,8 in the chest
-    And the player wishes to re-roll dice numbers 4,5
+    And the player re-rolls dice numbers 4,5
     And the player gets PARROT, PARROT
     And the player keeps dice numbers 1,2,3,4,5 in the chest
     And the player takes out dice numbers 6,7,8 from the chest
-    And the player wishes to re-roll dice numbers 6,7,8
+    And the player re-rolls dice numbers 6,7,8
     And the player gets SKULL, COIN, PARROT
     Then the player scores 1100 for this round
 
   Scenario: A player draws a Treasure Chest fortune card, rolls dice thrice, places dice in the chest
     Given a player wishes to roll dice thrice for their turn
-    When the player draws a CHEST and rolls Dice.SKULL, Dice.SKULL, Dice.PARROT, Dice.PARROT, Dice.PARROT, Dice.COIN, Dice.COIN, Dice.COIN
+    When the player draws a CHEST and rolls SKULL, SKULL, PARROT, PARROT, PARROT, COIN, COIN, COIN
     And the player keeps dice numbers 6,7,8 in the chest
-    And the player wishes to re-roll dice numbers 3,4,5
+    And the player re-rolls dice numbers 3,4,5
     And the player gets DIAMOND, DIAMOND, COIN
     And the player keeps dice numbers 5 in the chest
-    And the player wishes to re-roll dice numbers 3,4
+    And the player re-rolls dice numbers 3,4
     And the player gets SKULL, COIN, PARROT
     Then the player scores 600 for this round
 
