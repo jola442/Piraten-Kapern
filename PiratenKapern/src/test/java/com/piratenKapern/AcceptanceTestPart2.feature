@@ -72,3 +72,39 @@ Feature: Part 2 of the acceptance tests
       And the player re-rolls dice numbers 6,7
       And the player gets COIN, SWORD
       Then the player scores 1200 for this round
+
+
+    Scenario Outline: A player dies after getting 3 skulls(including Skull fortune cards) on their first roll
+      Given a player wishes to roll dice only once for their turn
+      When the player draws a <fortune_card> and rolls <roll>
+      Then the player scores <score> for this round
+      Examples:
+        |row|fortune_card|score|roll                                                  |
+        |106 |TWO_SKULLS |0    |SKULL, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD|
+        |107 |ONE_SKULL  |0    |SKULL, SKULL, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD|
+
+    Scenario Outline: A player re-rolls once after entering Skulls Island
+      Given a player wishes to roll dice twice for their turn
+      When the player draws a <fortune_card> and rolls <roll_1>
+      And the player enters the Skulls Island
+      And the player re-rolls dice numbers <dice_numbers>
+      And the player gets <roll_2>
+      Then the player scores 0 for this round
+      And the other players receive a deduction of <deduction>
+      Examples:
+        |row|fortune_card|deduction|roll_1                                                       |dice_numbers|roll_2                      |
+        |110|CAPTAIN     |1400     |SKULL, SKULL, SKULL, SKULL, SKULL, MONKEY, MONKEY, MONKEY    |6,7,8       |SKULL, SKULL, SWORD         |
+        |111|TWO_SKULLS  |500      |SKULL, SKULL, SKULL, SWORD, SWORD, SWORD, SWORD, SWORD       |4,5,6,7,8   |COIN, COIN, COIN, COIN, COIN|
+      
+      Scenario: A player re-rolls twice after entering Skulls Island
+        Given a player wishes to roll dice thrice for their turn
+        When the player draws a TWO_SKULLS and rolls SKULL, SKULL, PARROT, PARROT, PARROT, MONKEY, MONKEY, MONKEY
+        And the player enters the Skulls Island
+        And the player re-rolls dice numbers 3,4,5
+        And the player gets SKULL, SKULL, SWORD
+        And the player re-rolls dice numbers 5,6,7,8
+        And the player gets SKULL, SKULL, SKULL, SWORD
+        Then the player scores 0 for this round
+        And the other players receive a deduction of 900
+      
+    
