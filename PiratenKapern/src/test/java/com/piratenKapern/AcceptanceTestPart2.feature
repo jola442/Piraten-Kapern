@@ -106,5 +106,39 @@ Feature: Part 2 of the acceptance tests
         And the player gets SKULL, SKULL, SKULL, SWORD
         Then the player scores 0 for this round
         And the other players receive a deduction of 900
+
+  Scenario Outline: A player draws a Sea Battles card and scores their first dice roll
+    Given a player wishes to roll dice only once for their turn
+    When the player draws a <fortune_card> and rolls <roll>
+    Then the player scores <score> for this round
+    Examples:
+      |row|fortune_card|score|roll                                                          |
+      |114|TWO_SWORDS  |-300 |MONKEY, MONKEY, MONKEY, MONKEY, SKULL, SKULL, SKULL, SWORD    |
+      |116|FOUR_SWORDS |-1000|MONKEY, MONKEY, SKULL, SKULL, SKULL, SWORD, SWORD, SWORD      |
+      |117|TWO_SWORDS  |500  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, COIN, PARROT, PARROT    |
+      |120|THREE_SWORDS|800  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, SKULL     |
+      |123|FOUR_SWORDS |1300 |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, SKULL     |
+
+
+  Scenario Outline: A player draws a Sea Battles card and scores their second dice roll
+    Given a player wishes to roll dice twice for their turn
+    When the player draws a <fortune_card> and rolls <roll_1>
+    And the player re-rolls dice numbers <dice_numbers>
+    And the player gets <roll_2>
+    Then the player scores <score> for this round
+    Examples:
+      |row|fortune_card|score|roll_1                                                      |dice_numbers|roll_2                     |
+      |115|THREE_SWORDS|-500 |SWORD, SWORD, SKULL, SKULL, PARROT, PARROT, PARROT, PARROT  |5,6,7,8     |SKULL, SKULL, SKULL, SKULL |
+      |119|TWO_SWORDS  | 500 |MONKEY, MONKEY, MONKEY, MONKEY, SWORD, SKULL, PARROT, PARROT|7,8         |SWORD, SKULL               |
+      |122|THREE_SWORDS|-500 |MONKEY, MONKEY, MONKEY, MONKEY, SWORD, SWORD, SKULL, SKULL  |1,2,3,4     |SKULL, SKULL, SWORD, SWORD |
       
+    
+    Scenario: A player draws a Four Swords card and scores their third dice roll
+      Given a player wishes to roll dice thrice for their turn
+      When the player draws a FOUR_SWORDS and rolls MONKEY, MONKEY, MONKEY, SWORD, SKULL, DIAMOND, PARROT, PARROT
+      And the player re-rolls dice numbers 7,8
+      And the player gets SWORD, SWORD
+      And the player re-rolls dice numbers 1,2,3
+      And the player gets SWORD, PARROT, PARROT
+      Then the player scores 1300 for this round
     
