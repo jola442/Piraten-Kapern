@@ -1,6 +1,6 @@
 Feature: Part 2 of the acceptance tests
-  Scenario Outline: A player draws a sorceress fortune card
-    Given a player wishes to roll dice only once for their turn
+  Scenario Outline: A player draws a Sorceress fortune card
+    Given a player wishes to roll dice thrice for their turn
     When the player draws a SORCERESS and rolls <roll_1>
     And the player wishes to re-roll dice numbers <dice_numbers>
     And the player gets <roll_2>

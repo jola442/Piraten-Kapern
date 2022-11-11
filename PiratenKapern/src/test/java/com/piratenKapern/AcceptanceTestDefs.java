@@ -8,11 +8,10 @@ import com.piratenKapern.Game.Dice;
 import com.piratenKapern.Game.Card;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AcceptanceTestPart1Defs {
+public class AcceptanceTestDefs {
     Game game = new Game();
     @Given("a player wishes to roll dice only once for their turn")
     public void aPlayerWishesToRollDiceOnlyOnceForTheirTurn() {
