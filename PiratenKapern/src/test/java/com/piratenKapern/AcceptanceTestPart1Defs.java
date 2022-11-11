@@ -69,4 +69,8 @@ public class AcceptanceTestPart1Defs {
             game.getDice().set(dieIndex,dice.get(i));
         }
     }
+
+    @Given("a player wishes to roll dice thrice for their turn")
+    public void aPlayerWishesToRollDiceThriceForTheirTurn() {
+    }
 }
