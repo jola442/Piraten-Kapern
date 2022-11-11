@@ -55,3 +55,12 @@ Feature: Part 2 of the acceptance tests
     And the player gets SKULL, COIN, PARROT
     Then the player scores 600 for this round
 
+    Scenario Outline: A player rolls dice once and scores a full chest bonus
+      Given a player wishes to roll dice only once for their turn
+      When the player draws a <fortune_card> and rolls <roll>
+      Then the player scores <score> for this round
+      Examples:
+        |row|fortune_card|score|roll                                                         |
+        |97 |COIN        |400  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, DIAMOND, PARROT |
+        |98 |CAPTAIN     |1800 |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, COIN, COIN      |
+        |99 |COIN        |1000  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, DIAMOND  |
