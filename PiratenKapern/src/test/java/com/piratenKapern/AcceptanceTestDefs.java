@@ -29,6 +29,18 @@ public class AcceptanceTestDefs {
 
         return convertedDice;
     }
+
+    public ArrayList<Integer> convertToIntegerArray(String diceNumbers){
+        diceNumbers = diceNumbers.replaceAll("\\s+","");
+        ArrayList<Integer> convertedDiceNums = new ArrayList<>();
+        String[] diceNumList = diceNumbers.split(",");
+
+        for(int i = 0; i < diceNumList.length; ++i){
+            convertedDiceNums.add(Integer.valueOf(diceNumList[i]));
+        }
+
+        return convertedDiceNums;
+    }
     @When("the player draws a {} and rolls {}")
     public void thePlayerDrawsAFortuneCardAndRollsDice(Card fortuneCard, String diceString) {
         game.drawFortuneCard();
@@ -51,11 +63,7 @@ public class AcceptanceTestDefs {
 
     @And("the player wishes to re-roll dice numbers {}")
     public void thePlayerWishesToReRollDiceNumbers(String diceNumbers) {
-        ArrayList<Integer> convertedDiceNums = new ArrayList<>();
-        String[] diceNumList =diceNumbers.split(",");
-        for(int i = 0; i < diceNumList.length; ++i){
-            convertedDiceNums.add(Integer.valueOf(diceNumList[i])-1);
-        }
+        ArrayList<Integer> convertedDiceNums = convertToIntegerArray(diceNumbers);
         game.setDiceToReroll(convertedDiceNums);
         game.rerollDice();
     }
@@ -72,5 +80,22 @@ public class AcceptanceTestDefs {
     @Given("a player wishes to roll dice thrice for their turn")
     public void aPlayerWishesToRollDiceThriceForTheirTurn() {
     }
+
+    @And("the player keeps dice numbers {} in the chest")
+    public void thePlayerKeepsDiceNumbersInTheChest(String diceNumbers) {
+        ArrayList<Integer> convertedDiceNums = convertToIntegerArray(diceNumbers);
+        for(int i = 0; i < convertedDiceNums.size(); ++i){
+            int dieIndex = convertedDiceNums.get(i)-1;
+            game.getDiceInTreasureChest().add(dieIndex);
+        }
+    }
+
+
+    @And("the player takes out dice numbers {} from the chest")
+    public void thePlayerTakesOutDiceNumbersFromTheChest(String diceNumbers) {
+        ArrayList<Integer> convertedDiceNums = convertToIntegerArray(diceNumbers);
+        game.getDiceInTreasureChest().removeAll(convertedDiceNums);
+    }
+
 
 }
