@@ -18,4 +18,25 @@ Feature: Part 1 of the acceptance tests
       |72 |COIN        |600  |MONKEY, MONKEY, MONKEY, MONKEY, COIN, COIN, SKULL, SKULL      |
 
 
+  Scenario Outline: A player scores their second dice roll
+    Given a player wishes to roll dice twice for their turn
+    When the player draws a <fortune_card> and rolls <roll_1>
+    And the player wishes to re-roll dice numbers <dice_numbers>
+    And the player gets <roll_2>
+    Then the player scores <score> for this round
+    Examples:
+      |row|fortune_card|score|roll_1                                                      |dice_numbers|roll_2              |
+      |46 |COIN        |0    |SKULL, PARROT, PARROT, PARROT, PARROT, SWORD, SWORD, SWORD  |6,7,8       |SKULL, SKULL, SWORD |
+      |47 |COIN        |0    |SKULL, SKULL, PARROT, PARROT, PARROT, PARROT, SKULL, SWORD  |7,8         |SKULL, SWORD        |
+      |53 |COIN        |300  |MONKEY, MONKEY, SKULL,SKULL, SWORD, SWORD, PARROT, PARROT   |7,8         |SWORD, MONKEY       |
+      |58 |COIN        |800  |SKULL, COIN, COIN, PARROT, PARROT, SWORD, SWORD, SWORD      |4,5         |COIN, SWORD         |
+      |59 |CAPTAIN     |1200 |SKULL, COIN, COIN, PARROT, PARROT, SWORD, SWORD, SWORD      |4,5         |COIN, SWORD         |
+      |67 |COIN        |4600 |MONKEY, MONKEY, MONKEY, MONKEY, MONKEY, MONKEY, SWORD, SWORD|7,8         |MONKEY, MONKEY      |
+      |68 |DIAMOND     |400  |MONKEY, MONKEY, SKULL, SKULL, SWORD, SWORD, PARROT, PARROT  |7,8         |DIAMOND, DIAMOND    |
+      |69 |COIN        |500  |MONKEY, MONKEY, SKULL, SKULL, SWORD, SWORD, DIAMOND, PARROT |1,2         |DIAMOND, DIAMOND    |
+      |70 |COIN        |600  |SKULL, COIN, COIN, MONKEY, PARROT, SWORD, SWORD, SWORD      |6,7,8       |COIN, MONKEY, PARROT|
+      |71 |DIAMOND     |500  |SKULL, COIN, COIN, MONKEY, PARROT, SWORD, SWORD, SWORD      |6,7,8       |COIN, MONKEY, PARROT|
+
+
+
 
