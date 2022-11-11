@@ -15,6 +15,7 @@ public class Game{
     private int numCoinDice;
     private int numDiamondDice;
 
+
     private ArrayList<Integer> diceToReroll;
     private ArrayList<Integer> diceInTreasureChest;
     private EnumMap<Card, Integer> fortuneCards;
@@ -77,6 +78,10 @@ public class Game{
     public ArrayList<Integer> getDiceInTreasureChest() {
         return diceInTreasureChest;
     }
+    public ArrayList<Integer> getDiceToReroll() {
+        return diceToReroll;
+    }
+
 
 
 

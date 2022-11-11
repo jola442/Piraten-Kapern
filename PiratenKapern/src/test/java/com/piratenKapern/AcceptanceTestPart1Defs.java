@@ -1,5 +1,6 @@
 package com.piratenKapern;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -42,5 +43,30 @@ public class AcceptanceTestPart1Defs {
     @Then("the player scores {int} for this round")
     public void thePlayerScores(int score) {
         assertEquals(score,game.calculateScore());
+    }
+
+    @Given("a player wishes to roll dice twice for their turn")
+    public void aPlayerWishesToRollDiceTwiceForTheirTurn() {
+
+    }
+
+    @And("the player wishes to re-roll dice numbers {}")
+    public void thePlayerWishesToReRollDiceNumbers(String diceNumbers) {
+        ArrayList<Integer> convertedDiceNums = new ArrayList<>();
+        String[] diceNumList =diceNumbers.split(",");
+        for(int i = 0; i < diceNumList.length; ++i){
+            convertedDiceNums.add(Integer.valueOf(diceNumList[i])-1);
+        }
+        game.setDiceToReroll(convertedDiceNums);
+        game.rerollDice();
+    }
+
+    @And("the player gets {}")
+    public void thePlayerGetsRoll(String diceString) {
+        ArrayList<Dice> dice = convertToDiceArray(diceString);
+        for(int i = 0; i < game.getDiceToReroll().size();++i){
+            int dieIndex = game.getDiceToReroll().get(i);
+            game.getDice().set(dieIndex,dice.get(i));
+        }
     }
 }
