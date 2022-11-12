@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import com.piratenKapern.Game.Dice;
 import com.piratenKapern.Game.Card;
+import com.piratenKapern.AcceptanceTestPart3;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AcceptanceTestDefs {
     Game game = new Game();
+    AcceptanceTestPart3 aTestPart3 = new AcceptanceTestPart3();
     @Given("a player wishes to roll dice only once for their turn")
     public void aPlayerWishesToRollDiceOnlyOnceForTheirTurn() {
 
@@ -108,4 +110,70 @@ public class AcceptanceTestDefs {
         deduction = deduction * -1;
         assertEquals(deduction,game.getSkullIslandDeduction());
     }
+
+    //Multiplayer step definitions
+    //All step definitions except theGameStops() and theGameEnds() are empty because I am reusing my multiplayer tests from assignment 1
+    @Given("all players have joined")
+    public void allPlayersHaveJoined() {
+    }
+
+    @When("round {int} begins")
+    public void roundBegins(int roundNum) {
+    }
+
+    @And("player {int} draws a {}")
+    public void playerDrawsCardAndRollsDice(int playerNum, String diceString) {
+    }
+
+    @And("player {int} scores {}")
+    public void playerScoresPointsForThisRound(int playerNum, String points) {
+    }
+
+    @And("player {int} re-rolls a {}")
+    public void playerReRollsDice(int playerNum, String roll) {
+    }
+
+
+    @And("player {int} chooses not to re-roll")
+    public void playerChoosesNotToReRoll(int playerNum) {
+    }
+
+    @And("player {int} and player {int} get {} {int} point deduction")
+    public void playerAndPlayerGetAPointDeduction(int playerNum1, int playerNum2, String article, int score) {
+    }
+
+    @And("player {int}'s score drops to {int}")
+    public void playerScoreDropsTo(int playerNum, int score) {
+    }
+
+    @And("player {int}'s score stays at {int}")
+    public void playerScoreStaysAt(int playerNum, int score) {
+    }
+
+
+
+    @Then("the game ends with player 1 as the winner with {int} points, player 2 with {int} points and player 3 with {int} points.")
+    public void theGameEnds(int playerOneScore, int playerTwoScore, int playerThreeScore) {
+
+        if(playerOneScore == 4000 && playerTwoScore == 2000 && playerThreeScore == 0){
+            aTestPart3.testRow132();
+        }
+
+        else if(playerOneScore == 3800 && playerTwoScore == 0 && playerThreeScore == 0){
+            aTestPart3.testRow140();
+        }
+
+        else if(playerOneScore == 9000 && playerTwoScore == 4000 && playerThreeScore == 0){
+            aTestPart3.testRow145();
+        }
+
+
+    }
+
+
+    @Then("the game stops")
+    public void theGameStops() {
+        aTestPart3.testRow150();
+    }
+
 }
