@@ -40,7 +40,7 @@ Feature: Part 3 of the acceptance tests
     And player 3 scores 0
     And player 1 draws a Captain card and rolls 8 Swords
     And player 1 scores 9000 points for this round
-    Then the game ends with player 1 as the winner with 9000 points, player 2 with 4000 points and player 3 with 0 points
+    Then the game ends with player 1 as the winner with 9000 points, player 2 with 4000 points and player 3 with 0 points.
 
 
   Scenario: Row 150

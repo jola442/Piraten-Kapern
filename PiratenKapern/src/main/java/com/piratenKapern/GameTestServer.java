@@ -1,6 +1,6 @@
 package com.piratenKapern;
-import java.io.FileWriter;
-import java.io.IOException;
+//import java.io.FileWriter;
+//import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.piratenKapern.Game.Dice;
@@ -8,66 +8,23 @@ import com.piratenKapern.Game.Card;
 
 public class GameTestServer extends GameServer{
     private int testNumber;
-    private FileWriter fileWriter;
+//    private FileWriter fileWriter;
 
     public GameTestServer(int testNum){
         testNumber = testNum;
-        try{
-            String fileName;
-            if(testNumber == 1){
-                fileName = "Row132.txt";
-            }
-
-            else if(testNumber == 2){
-                fileName = "Row140.txt";
-            }
-
-            else if(testNumber == 3){
-                fileName = "Row145.txt";
-            }
-
-            else{
-                fileName = "Row150.txt";
-            }
-
-            //overwrite the file if it exists
-            fileWriter = new FileWriter(fileName, false);
-
-            //set the file to append mode
-            fileWriter = new FileWriter(fileName, true);
-        }
-
-        catch (IOException e){
-            System.err.println("IOException: " + e.getMessage());
-        }
     }
 
     @Override
     public void acceptConnections(){
-        try{
-            for(int i = 0; i < players.length; i++){
-                int id = i+1;
-                Player player = new Player("Player " + id);
-                TestServer testServer = new TestServer(id);
-                players[i] = player;
-                serverThreads[i] = testServer;
-                fileWriter.write(player.getName() + " has joined!\n");
-                fileWriter.flush();
-            }
+        for(int i = 0; i < players.length; i++){
+            int id = i+1;
+            Player player = new Player("Player " + id);
+            TestServer testServer = new TestServer(id);
+            players[i] = player;
+            serverThreads[i] = testServer;
         }
 
-        catch (IOException e){
-            System.err.println("IOException: " + e.getMessage());
-        }
 
-    }
-
-    @Override
-    public void playRound(Server serverThread, Player player) {
-        if(testNumber == 4 && serverThread.playerId == 3){
-            return;
-        }
-        super.playRound(serverThread, player);
     }
 
     @Override
@@ -269,7 +226,7 @@ public class GameTestServer extends GameServer{
 
         @Override
         public void sendString(String msg) {
-            try{
+//            try{
                 if(msg.contains("reduced") || msg.contains("deduction")){
                     String newMsg = "What player " + playerId + " sees:\n" + msg;
                     msg = newMsg;
@@ -279,13 +236,13 @@ public class GameTestServer extends GameServer{
                     String newMsg = "What player " + playerId + " sees: \n" + msg;
                     msg = newMsg;
                 }
-                fileWriter.write(msg+"\n");
-                fileWriter.flush();
-            }
+//                fileWriter.write(msg+"\n");
+//                fileWriter.flush();
+//            }
 
-            catch (IOException e){
-                System.err.println("IOException: " + e.getMessage());
-            };
+//            catch (IOException e){
+//                System.err.println("IOException: " + e.getMessage());
+//            };
         }
 
 
