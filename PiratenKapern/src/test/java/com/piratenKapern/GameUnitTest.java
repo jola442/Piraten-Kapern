@@ -581,4 +581,38 @@ public class GameUnitTest {
         assertEquals(winners, game.getWinners(players));
     }
 
+    @Test
+    void testPlayerIsDead(){
+        game.drawFortuneCard();
+        game.rollDice();
+
+        //2 SKULLS DICE + ONE_SKULL CARD
+        game.setFortuneCard(Card.ONE_SKULL);
+        ArrayList<Game.Dice> dice = new ArrayList<Game.Dice>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SWORD, Dice.DIAMOND, Dice.COIN,
+                Dice.MONKEY, Dice.MONKEY, Dice.PARROT));
+        game.setDice(dice);
+        assertTrue(game.playerIsDead());
+
+        //3 SKULLS DICE + 1 COIN CARD
+        game.setFortuneCard(Card.COIN);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.DIAMOND, Dice.COIN,
+                Dice.MONKEY, Dice.MONKEY, Dice.PARROT));
+        game.setDice(dice);
+        assertTrue(game.playerIsDead());
+
+        //1 SKULLS DIE + TWO_SKULLS CARD
+        game.setFortuneCard(Card.TWO_SKULLS);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Dice.SKULL, Dice.COIN, Dice.COIN, Dice.DIAMOND, Dice.COIN,
+                Dice.MONKEY, Dice.MONKEY, Dice.PARROT));
+        game.setDice(dice);
+        assertTrue(game.playerIsDead());
+
+        //3 SKULLS DICE + ONE_SKULL CARD
+        game.setFortuneCard(Card.ONE_SKULL);
+        dice = new ArrayList<Game.Dice>(Arrays.asList(Dice.SKULL, Dice.SKULL, Dice.SKULL, Dice.DIAMOND, Dice.COIN,
+                Dice.MONKEY, Dice.MONKEY, Dice.PARROT));
+        game.setDice(dice);
+        assertTrue(game.playerIsDead());
+    }
+
 }
