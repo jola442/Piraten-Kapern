@@ -58,6 +58,7 @@ Feature: Part 2 of the acceptance tests
     And the player re-rolls dice numbers 3,4
     And the player gets SKULL, COIN, PARROT
     Then the player scores 600 for this round
+    But the player is dead
 
   @Rows97,98,99,103
   Scenario Outline: A player rolls dice once and scores a full chest bonus
