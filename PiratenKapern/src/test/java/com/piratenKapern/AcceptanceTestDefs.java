@@ -1,9 +1,6 @@
 package com.piratenKapern;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import com.piratenKapern.Game.Dice;
 import com.piratenKapern.Game.Card;
 import com.piratenKapern.AcceptanceTestPart3;
@@ -176,4 +173,8 @@ public class AcceptanceTestDefs {
         aTestPart3.testRow150();
     }
 
+    @But("the player is dead")
+    public void thePlayerIsDead() {
+        assertTrue(game.playerIsDead());
+    }
 }
