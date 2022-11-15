@@ -101,7 +101,7 @@ public class AcceptanceTestDefs {
     public void thePlayerEntersTheSkullsIsland() {
     }
 
-    @And("the other players receive a deduction of {int}")
+    @And("the other players receive a deduction of {}")
     public void theOtherPlayersReceiveADeductionOf(int deduction) {
         //Deductions were defined as positive in the steps but the system works with negative scores
         deduction = deduction * -1;
@@ -177,4 +177,5 @@ public class AcceptanceTestDefs {
     public void thePlayerIsDead() {
         assertTrue(game.playerIsDead());
     }
+
 }

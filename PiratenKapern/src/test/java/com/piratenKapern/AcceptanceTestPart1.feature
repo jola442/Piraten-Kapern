@@ -1,5 +1,5 @@
 Feature: Part 1 of the acceptance tests
-  @Rows45,52,54,55,56,57,62,63,64,65,66,72
+  @45,52,54,55,56,57,62,63,64,65,66,72
   Scenario Outline: A player scores their first dice roll
     Given a player wishes to roll dice only once for their turn
     When the player draws a <fortune_card> and rolls <roll>
@@ -19,7 +19,7 @@ Feature: Part 1 of the acceptance tests
       |66 |CAPTAIN     |9000 |SWORD, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD        |
       |72 |COIN        |600  |MONKEY, MONKEY, MONKEY, MONKEY, COIN, COIN, SKULL, SKULL      |
 
-  @Rows46,47,53,58,59,67,68,69,70,71
+  @46,47,53,58,59,67,68,69,70,71
   Scenario Outline: A player scores their second dice roll
     Given a player wishes to roll dice twice for their turn
     When the player draws a <fortune_card> and rolls <roll_1>
@@ -39,7 +39,7 @@ Feature: Part 1 of the acceptance tests
       |70 |COIN        |600  |SKULL, COIN, COIN, MONKEY, PARROT, SWORD, SWORD, SWORD      |6,7,8       |COIN, MONKEY, PARROT|
       |71 |DIAMOND     |500  |SKULL, COIN, COIN, MONKEY, PARROT, SWORD, SWORD, SWORD      |6,7,8       |COIN, MONKEY, PARROT|
 
-  @Rows49,51,61
+  @49,51,61
   Scenario Outline: A player scores their third dice roll
     Given a player wishes to roll dice thrice for their turn
     When the player draws a <fortune_card> and rolls <roll_1>

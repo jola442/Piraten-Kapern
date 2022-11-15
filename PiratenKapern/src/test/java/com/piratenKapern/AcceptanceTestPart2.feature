@@ -1,5 +1,5 @@
 Feature: Part 2 of the acceptance tests
-  @Rows77,78,79
+  @77,78,79
   Scenario Outline: A player draws a Sorceress fortune card
     Given a player wishes to roll dice thrice for their turn
     When the player draws a SORCERESS and rolls <roll_1>
@@ -15,7 +15,7 @@ Feature: Part 2 of the acceptance tests
       |78 |1000 |SKULL, SKULL, SKULL, PARROT, PARROT, PARROT, SWORD, SWORD    |1           |PARROT               |7,8           |PARROT, PARROT|
       |79 |2000 |SKULL, PARROT, PARROT, PARROT, PARROT, MONKEY, MONKEY, MONKEY|6,7,8       |SKULL, PARROT, PARROT|6             |PARROT        |
 
-  @Rows82,84
+  @82,84
   Scenario Outline: A player draws a Monkey Business fortune card and rolls dice once
     Given a player wishes to roll dice only once for their turn
     When the player draws a MONKEY_AND_PARROT and rolls <roll>
@@ -26,7 +26,7 @@ Feature: Part 2 of the acceptance tests
       |82 |1100 |MONKEY, MONKEY, MONKEY, PARROT, PARROT, PARROT, SKULL, COIN|
       |84 |0    |SKULL, SKULL, SKULL, MONKEY, MONKEY, MONKEY, PARROT, PARROT|
 
-  @Row83
+  @83
   Scenario: A player draws a Monkey Business fortune card and rolls dice twice (Row 83)
     Given a player wishes to roll dice twice for their turn
     When the player draws a MONKEY_AND_PARROT and rolls MONKEY, MONKEY, SWORD, SWORD, PARROT, PARROT, COIN, COIN
@@ -34,7 +34,7 @@ Feature: Part 2 of the acceptance tests
     And the player gets MONKEY, PARROT
     Then the player scores 1700 for this round
 
-  @Row90
+  @90
   Scenario: A player draws a Treasure Chest fortune card, rolls dice thrice, places and takes out dice from the chest
     Given a player wishes to roll dice thrice for their turn
     When the player draws a CHEST and rolls PARROT, PARROT, PARROT, SWORD, SWORD, DIAMOND, DIAMOND, COIN
@@ -47,7 +47,7 @@ Feature: Part 2 of the acceptance tests
     And the player gets SKULL, COIN, PARROT
     Then the player scores 1100 for this round
 
-  @Row94
+  @94
   Scenario: A player draws a Treasure Chest fortune card, rolls dice thrice, places dice in the chest
     Given a player wishes to roll dice thrice for their turn
     When the player draws a CHEST and rolls SKULL, SKULL, PARROT, PARROT, PARROT, COIN, COIN, COIN
@@ -60,7 +60,7 @@ Feature: Part 2 of the acceptance tests
     Then the player scores 600 for this round
     But the player is dead
 
-  @Rows97,98,99,103
+  @97,98,99,103
   Scenario Outline: A player rolls dice once and scores a full chest bonus
     Given a player wishes to roll dice only once for their turn
     When the player draws a <fortune_card> and rolls <roll>
@@ -72,7 +72,7 @@ Feature: Part 2 of the acceptance tests
       |99 |COIN             |1000 |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, DIAMOND  |
       |103|MONKEY_AND_PARROT|1200 |MONKEY, MONKEY, PARROT, COIN, COIN, DIAMOND, DIAMOND, DIAMOND|
 
-  @Row102
+  @102
   Scenario: A player draws a Two Swords Sea Battle card and rolls dice twice for their turn (Full Chest)
     Given a player wishes to roll dice twice for their turn
     When the player draws a TWO_SWORDS and rolls MONKEY, MONKEY, MONKEY, MONKEY, SWORD, PARROT, PARROT, COIN
@@ -80,7 +80,7 @@ Feature: Part 2 of the acceptance tests
     And the player gets COIN, SWORD
     Then the player scores 1200 for this round
 
-  @Rows106,107
+  @106,107
   Scenario Outline: A player dies after getting 3 skulls(including Skull fortune cards) on their first roll
     Given a player wishes to roll dice only once for their turn
     When the player draws a <fortune_card> and rolls <roll>
@@ -90,7 +90,7 @@ Feature: Part 2 of the acceptance tests
       |106 |TWO_SKULLS |0    |SKULL, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD|
       |107 |ONE_SKULL  |0    |SKULL, SKULL, SWORD, SWORD, SWORD, SWORD, SWORD, SWORD|
 
-  @Rows110,111
+  @110,111
   Scenario Outline: A player re-rolls once after entering Skulls Island
     Given a player wishes to roll dice twice for their turn
     When the player draws a <fortune_card> and rolls <roll_1>
@@ -104,7 +104,7 @@ Feature: Part 2 of the acceptance tests
       |110|CAPTAIN     |1400     |SKULL, SKULL, SKULL, SKULL, SKULL, MONKEY, MONKEY, MONKEY    |6,7,8       |SKULL, SKULL, SWORD         |
       |111|TWO_SKULLS  |500      |SKULL, SKULL, SKULL, SWORD, SWORD, SWORD, SWORD, SWORD       |4,5,6,7,8   |COIN, COIN, COIN, COIN, COIN|
 
-  @Row109
+  @109
   Scenario: A player re-rolls twice after entering Skulls Island
     Given a player wishes to roll dice thrice for their turn
     When the player draws a TWO_SKULLS and rolls SKULL, SKULL, PARROT, PARROT, PARROT, MONKEY, MONKEY, MONKEY
@@ -116,7 +116,7 @@ Feature: Part 2 of the acceptance tests
     Then the player scores 0 for this round
     And the other players receive a deduction of 900
 
-  @Rows114,116,117,120,123
+  @114,116,117,120,123
   Scenario Outline: A player draws a Sea Battles card and scores their first dice roll
     Given a player wishes to roll dice only once for their turn
     When the player draws a <fortune_card> and rolls <roll>
@@ -129,7 +129,7 @@ Feature: Part 2 of the acceptance tests
       |120|THREE_SWORDS|800  |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, SKULL     |
       |123|FOUR_SWORDS |1300 |MONKEY, MONKEY, MONKEY, SWORD, SWORD, SWORD, SWORD, SKULL     |
 
-  @Rows115,119,122
+  @115,119,122
   Scenario Outline: A player draws a Sea Battles card and scores their second dice roll
     Given a player wishes to roll dice twice for their turn
     When the player draws a <fortune_card> and rolls <roll_1>
@@ -142,7 +142,7 @@ Feature: Part 2 of the acceptance tests
       |119|TWO_SWORDS  | 500 |MONKEY, MONKEY, MONKEY, MONKEY, SWORD, SKULL, PARROT, PARROT|7,8         |SWORD, SKULL               |
       |122|THREE_SWORDS|-500 |MONKEY, MONKEY, MONKEY, MONKEY, SWORD, SWORD, SKULL, SKULL  |1,2,3,4     |SKULL, SKULL, SWORD, SWORD |
       
-  @Row126
+  @126
   Scenario: A player draws a Four Swords card and scores their third dice roll
     Given a player wishes to roll dice thrice for their turn
     When the player draws a FOUR_SWORDS and rolls MONKEY, MONKEY, MONKEY, SWORD, SKULL, DIAMOND, PARROT, PARROT

@@ -1,7 +1,7 @@
 Feature: Part 3 of the acceptance tests
   Background:
     Given all players have joined
-  Scenario: Row 132
+  Scenario: 132
     When round 1 begins
     And player 1 draws a Captain card and rolls 7 Swords and 1 Skull
     And player 1 scores 4000 points for this round
@@ -11,7 +11,7 @@ Feature: Part 3 of the acceptance tests
     And player 3 scores 0 points for this round
     Then the game ends with player 1 as the winner with 4000 points, player 2 with 2000 points and player 3 with 0 points.
 
-  Scenario: Row 140
+  Scenario: 140
     When round 1 begins
     And player 1 draws a Captain card and rolls 7 Swords and 1 Skull
     And player 1 scores 4000 points for this round
@@ -30,7 +30,7 @@ Feature: Part 3 of the acceptance tests
     And player 2 draws a Captain card and rolls 3 Skulls and 5 Monkeys
     Then the game ends with player 1 as the winner with 3800 points, player 2 with 0 points and player 3 with 0 points.
 
-  Scenario: Row 145
+  Scenario: 145
     When round 1 begins
     And player 1 draws a Captain card and rolls 3 Skulls and 5 Monkeys
     And player 1 scores 0 points for this round
@@ -43,7 +43,7 @@ Feature: Part 3 of the acceptance tests
     Then the game ends with player 1 as the winner with 9000 points, player 2 with 4000 points and player 3 with 0 points.
 
 
-  Scenario: Row 150
+  Scenario: 150
     When round 1 begins
     And player 1 draws a Coin card and rolls 6 Swords and 2 Skulls
     And player 1 scores 1100 points for this round
