@@ -633,5 +633,11 @@ public class Game{
         return winners;
     }
 
+    public boolean playerIsDead(){
+        countDice();
+        return (numSkullDice >= 3 || (numSkullDice == 2 && fortuneCard == Card.ONE_SKULL) || (numSkullDice == 1 && fortuneCard == Card.TWO_SKULLS));
+
+    }
+
 
 }
