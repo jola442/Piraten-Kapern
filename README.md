@@ -1,10 +1,6 @@
-# 4004-F22-A1-101166182
-## Some A2 commits in main branch
-I did assignment 2 on the main branch until the announcement on Monday, 14th, October, 2022. Afterwards, I made my Assignment2 branch and completed the assignment.
+## Description
+A desktop application that allows 3 players to play a game of Piraten Karpen 8's on three different terminal windows.
 
-## Deleted a commit from A1 by mistake
-I accidentally deleted my last commit from A1 on github when trying to delete my A2 commit. The first commit after the A1 deadline is actually the last commit from A1. Please refer to the screenshot below as proof that this commit was made before the A1 due date. In the commit, I made the UI announce when turns starts. To confirm that this commit was part of A1, you can verify that I got the marks for this requirement in A1. \
-<img width="505" alt="A1Proof" src="https://user-images.githubusercontent.com/51683551/201492793-16886964-36c5-4ec5-a580-96362988c0e1.png">
+## Piraten Karpen Rules
+The rules for the game can be found [here](https://cdn.1j1ju.com/medias/ba/a4/91-piraten-kapern-rulebook.pdf)
 
-## Multiplayer step definitions
-For the multiplayer step definitions, I reused my multiplayer test code from A1 so most of the step definitions are empty except theGameEnds(int playerOneScore, int playerTwoScore, int playerThreeScore) and theGameStops()
